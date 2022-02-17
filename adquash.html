@@ -1,0 +1,11 @@
+<p style="background-color:blue;color:white;font-size:20px;text-align:center;">You will be redirected ADQUASH>COM home page in <span id="counter">10</span> second(s). If You not redirected <a href="https://adquash.com">Click here for home page</a></a></p>
+<script type="text/javascript">
+function countdown() {
+    var i = document.getElementById('counter');
+    if (parseInt(i.innerHTML)<=0) {
+        location.href = 'https://adquash.com';
+    }
+    i.innerHTML = parseInt(i.innerHTML)-1;
+}
+setInterval(function(){ countdown(); },1000);
+</script>
