@@ -27,11 +27,11 @@
         
         <!-- Modernizr -->
         <script src="assets/js/modernizr-2.6.2.min.js"></script>
-
+<script src="w3.js"></script>
 
     </head>
     <body>
-<?php include"menu.html"?>
+<div w3-include-html="menu.html"></div>
     
      <div class="section-home our-causes">
 
@@ -352,15 +352,17 @@ $i++;
 
                 <div class="col-md-3">
 
-<?php include "sidebar.html" ?>                    
+<div w3-include-html="sidebar.html"></div>          
                 </div>
 
 </div></div>                
 
 
     <footer class="main-footer">
-<?php include"footer.html"?>
-
+<div w3-include-html="footer.html"></div>
+<script>
+w3.includeHTML();
+</script>	    
     </body>
     </html>
 	
