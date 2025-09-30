@@ -7,15 +7,25 @@ function includeHTML(callback) {
     if (!file) return;
 
     fetch(file)
-      .then(resp => {
-        if (!resp.ok) throw new Error("Page not found");
-        return resp.text();
-      })
+      .then(resp => resp.text())
       .then(data => {
         el.innerHTML = data;
         loaded++;
 
-        // Agar ye sidebar.html hai to banners.js load karo
+        // ✅ Run all scripts inside loaded HTML
+        el.querySelectorAll("script").forEach(oldScript => {
+          const newScript = document.createElement("script");
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+            newScript.async = oldScript.async;
+            newScript.defer = oldScript.defer;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(newScript);
+        });
+
+        // ✅ If sidebar.html, load banners.js
         if (file.includes("sidebar.html")) {
           const script = document.createElement("script");
           script.src = "https://aksharhanumandham.in/data/banners.js?v=" + new Date().getTime();
@@ -30,5 +40,4 @@ function includeHTML(callback) {
   });
 }
 
-// Page load hone par call karo
 document.addEventListener("DOMContentLoaded", () => includeHTML());
