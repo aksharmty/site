@@ -397,4 +397,21 @@ w3.displayObject = function (id, data) {
     l = x.length;
     a.innerHTML = a.innerHTML.replace(r, result);
   }
+// new line add 
+  function loadHTML(id, file, callback) {
+  fetch(file)
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById(id).innerHTML = data;
+      if (callback) callback();
+    });
+}
+
+// Example: sidebar load karna
+loadHTML("sidebar", "sidebar.html", () => {
+    const script = document.createElement('script');
+    script.src = 'https://aksharhanumandham.in/data/banners.js?v=' + new Date().getTime();
+    document.body.appendChild(script);
+});
+
 };
