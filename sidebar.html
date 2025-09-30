@@ -2,29 +2,14 @@
   <span style="font-size: 18px; color: white;">Advertisement</span>
 </div>
 
-<div id="sidebar-container"></div>
-<script> (function() {
-    // Sidebar container
-    var container = document.getElementById('sidebar-container');
-    if (!container) {
-        container = document.createElement('div');
-        container.id = 'sidebar-container';
-        document.body.appendChild(container);
-    }
+<!-- Sidebar container -->
+<div id="sidebar-container">
+  <div id="banner-slot"></div>
+</div>
 
-    // Create banner slot inside sidebar
-    var slot = document.createElement('div');
-    slot.id = 'banner-slot';
-    container.appendChild(slot);
-
-    // Load external banners.js
-    var script = document.createElement('script');
-    script.src = "https://aksharhanumandham.in/data/banners.js";
-    document.head.appendChild(script);
-})();
-</script>
-
-</div><br>
+<!-- External banners.js load -->
+<script src="https://aksharhanumandham.in/data/banners.js"></script>
+<br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
      crossorigin="anonymous"></script>
 <!-- 300 -->
