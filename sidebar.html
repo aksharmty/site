@@ -2,13 +2,18 @@
   <span style="font-size: 18px; color: white;">Advertisement</span>
 </div>
 
-<!-- Sidebar container -->
 <div id="sidebar-container">
   <div id="banner-slot"></div>
 </div>
 
-<!-- External banners.js load -->
-<script src="https://aksharhanumandham.in/data/banners.js"></script>
+<script>
+(function(){
+  var s = document.createElement("script");
+  s.src = "https://aksharhanumandham.in/data/banners.js";
+  document.body.appendChild(s);
+})();
+</script>
+
 <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
      crossorigin="anonymous"></script>
