@@ -7,26 +7,28 @@
         <title>Akshar Mantra Tantra Yantra Payment Option</title>
         <meta name="description" content="Akshar Mantra Tantra Yantra accept Payment in">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Fonts -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Dosis:400,700' rel='stylesheet' type='text/css'>
-
         <!-- Bootsrap -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-        <!-- Font awesome -->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
-        <!-- Owl carousel -->
-        <link rel="stylesheet" href="assets/css/owl.carousel.css">
-
-        <!-- Template main Css -->
+       <!-- Template main Css -->
         <link rel="stylesheet" href="assets/css/style.css">
-        
-        <!-- Modernizr -->
-        <script src="assets/js/modernizr-2.6.2.min.js"></script>
-<script src="w3.js"></script>
+       <script src="w3.js"></script>
+        <style> .mobile-upi {
+            display: none;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
+        @media(max-width:768px) {
+            .mobile-upi {
+                display: block;
+            }
+        }
+
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
     </head>
 
     <body>
@@ -39,21 +41,27 @@
 
             <div class="row">
 
-                <div class="col-md-3 col-sm-6">
-
-                    <center><img src="rajpic.jpg" alt="Mantra Sadhak Mr.Raj Kumar"><br>
-
-                        <h2>Mr.Raj Kumar <br> Mantra Sadhak
-                        </h2></center>
-                    
-                </div> 
-
-                <div class="col-md-6 col-sm-6">
+               <div class="col-md-9 col-sm-6">
 
                     <div class="cause">
 
                         <div class="cause-details">
-                        <h3>You can use any option for deposit :<br>                        
+                        <h3>You can use any option for deposit :<br>  
+<!-- Mobile UPI Button -->
+            <div class="mobile-upi">
+                <a class="btn-gradient btn-custom" href="upi://pay?pa=9213816442@apl&pn=Raj Kumar&am=5000&cu=INR">Pay
+                    with UPI (Mobile)</a>
+            </div>
+
+            <!-- Desktop QR Code -->
+            <div class="qr-code">
+                <p>Scan QR Code to Pay:</p>
+                <canvas id="upi-qr" style="max-width:250px;"></canvas>
+                <br>
+                <button id="copy-upi" class="btn-success">Copy UPI ID</button>
+    <p style="margin-top:10px; font-size:14px; color:#666;">UPI ID: <strong>9213816442@apl</strong></p>
+                <!-- a id="download-qr" class="btn-success">Download QR Code</a -->
+            </div>                            
                         <b>UPI : </b>9213816442@icici<br><br><br>
                         <b>Bank Deposit :</b><br><br>
 <b>SBI BANK DETAILS:</b><br>
@@ -62,7 +70,7 @@ Saving A/c No: 34047891546<br>
 Bank Name ; SBI BANK<br>
 Branch: C-BLOCK,JANAK PURI<br>
 IFSC Code SBIN0050258<br><br>
-<b>AXIS BANK DETAILS:</b><br>
+<!-- b>AXIS BANK DETAILS:</b><br>
 Account Name: RAJ KUMAR<br>
 Saving A/c No: 911010058791914<br>
 Bank Name ; AXIS BANK<br>
@@ -73,7 +81,7 @@ Account Name: RAJ KUMAR<br>
 Saving A/c No: 900101598401<br>
 Bank Name ; ICICI BANK<br>
 Bank Branch: Janak Puri DELHI<br>
-IFSC Code : ICIC0006629<br><br>
+IFSC Code : ICIC0006629<br --><br>
 <b>Paypal : </b><br>
 Paypal Id : aksharmty@ymail.com 
 </h3><br>
@@ -125,19 +133,40 @@ Paypal Id : aksharmty@ymail.com
 
     <!-- Template main javascript -->
     <script src="assets/js/main.js"></script>
-   
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8YFKRR6JC5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8YFKRR6JC5');
-</script>
-<script>
-w3.includeHTML();
-</script>
+<script>w3.includeHTML();</script>
 </footer>
 </body>
 </html>
+<!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>
+        const upiUrl = "upi://pay?pa=9213816442@apl&pn=Raj Kumar&cu=INR";
+        const canvas = document.getElementById('upi-qr');
+        QRCode.toCanvas(canvas, upiUrl, { width: 250 }, function (error) {
+            if (error) console.error(error);
+        });
+
+        document.getElementById('copy-upi').addEventListener('click', function () {
+    navigator.clipboard.writeText("9213816442@apl").then(() => {
+        alert("✅ UPI ID copied to clipboard: 9213816442@apl");
+    });
+});
+ //document.getElementById('download-qr').addEventListener('click', function () {
+   //         this.href = canvas.toDataURL("image/png");
+     //       this.download = "upi_qr.png";
+       // });
+
+        // Accordion
+        const headers = document.querySelectorAll('.accordion-header');
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                const open = header.classList.contains('active');
+                document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+                document.querySelectorAll('.accordion-body').forEach(b => b.style.display = 'none');
+                if (!open) {
+                    header.classList.add('active');
+                    header.nextElementSibling.style.display = 'block';
+                }
+            });
+        });
+    </script>
