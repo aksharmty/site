@@ -1,5 +1,28 @@
 <button id="topBtn" title="Go to top">↑</button>
 
+<style>
+#topBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: #fff;
+  border: none;
+  outline: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  z-index: 1000;
+  transition: background 0.3s;
+}
+#topBtn:hover {
+  background: #555;
+}
+</style>
+
 <script>
   const topBtn = document.getElementById("topBtn");
   window.onscroll = function() {
@@ -11,97 +34,59 @@
   };
   topBtn.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
 </script>
+
 <footer class="main-footer">
+  <div class="footer-top"></div>
+  <div class="footer-main">
+    <div class="container">
+      <div class="row">
 
-        <div class="footer-top">
+        <div class="col-md-4">
+          <div class="footer-col">
+            <div class="footer-content">
+              <iframe src="https://youtube.com/embed/9W4AKZJBQFM" width="250" height="200" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
-        <div class="footer-main">
-            <div class="container">
-               <div class="row">
-                    <div class="col-md-4">
 
-                        <div class="footer-col">
-                            <div class="footer-content">
-                         <iframe src="https://youtube.com/embed/9W4AKZJBQFM" width="250px" height="200px" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                   </div>
+        <div class="col-md-4">
+          <div class="footer-col">
+            <div class="footer-content">
+              <a href="https://adquash.com" target="_blank">
+                <img src="adquash-logo-new.png" width="250" height="200" alt="Adquash Logo">
+              </a>
+            </div>
+          </div>
+        </div>
 
-                    </div>
+        <div class="col-md-4">
+          <div class="footer-col">
+            Affiliate Partner
+            <div class="footer-content">
+              <a href="//adquash.com" target="_blank">Free Article Submissions</a><br>
+              <a href="//sakhihosting.adquash.com" target="_blank">Web Hosting</a><br>
+              <a href="//compoundtrading.adquash.com/bot.html" target="_blank">Spot Trading Bot</a><br>
+              <a href="//travel.adquash.com" target="_blank">Flight for Akshar Mantra Tantra Yantra</a><br>
+              <a href="//travel.adquash.com" target="_blank">Hotel near Akshar Mantra Tantra Yantra</a><br>
+            </div>
+          </div>
+        </div>
 
-                    <div class="col-md-4">
+      </div>
+    </div>
 
-                        <div class="footer-col">
-                            <div class="footer-content">
+    <div class="footer-bottom">
+      <div class="container text-left">
+        <a href="index.html">Akshar Mantra Tantra Yantra</a> © copyrights 2005-<span id="year"></span>
+        - Design by <a href="https://sakhihosting.adquash.com" target="_blank">Sakhi Hosting</a>
+      </div>
+      <div class="container text-right"><a href="terms.html" target="_blank">Terms</a></div>
+    </div>
+  </div>
+</footer>
 
-<a href="https://adquash.com"target="_blank"><img src="adquash-logo-new.png" width="250px" height="200px"></a>
-
-       </div>
-                   </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-
-                        <div class="footer-col">
-                          
-Affiliate Partner 
-                            <div class="footer-content">
-                                 <a href="//adquash.com" target="_blank">Free Article Submissions</a><br>
-
-                                <a href="//sakhihosting.adquash.com" target="_blank">Web Hosting </a><br>
-                                 <a href="//compoundtrading.adquash.com/bot.html" target="_blank">Spot Trading Bot</a><br>
-                                 <a href="//travel.adquash.com" target="_blank">Flight for akshar mantra tantra yantra</a><br>
-                                 <a href="//travel.adquash.com" target="_blank">Hotal near Akshar mantra tantra yantra</a><br>
-                                </div>
-
-                                </div>
-                            </div>
-                            
-                        </div>
-
-                    </div>
-                           <div class="clearfix"></div>
-
-
-
-                </div>
-
-        <div class="footer-bottom">
-
-            <div class="container text-left">
-              <a href="index.html">Akshar Mantra Tantra Yantra</a>   @ copyrights 2005- <script>
+<script>
 document.addEventListener("DOMContentLoaded", ()=>{
   document.getElementById("year").textContent = new Date().getFullYear();
 });
-</script> - & Design by <a href="https://sakhihosting.adquash.com" target="_blank">Sakhi Hosting</a>
-            </div>
-            <div class="container text-right"><a href="terms.html" target="_blank">Terms</a></div>
-        </div>
-        
-    </footer> <!-- main-footer -->
-
-    <!--  Scripts
-    ================================================== -->
-
-    <!-- jQuery -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
-
-    <!-- Bootsrap javascript file -->
-    <!-- script src="assets/js/bootstrap.min.js"></script -->
-    
-    <!-- owl carouseljavascript file -->
-    <script src="assets/js/owl.carousel.min.js"></script>
-
-    <!-- Template main javascript -->
-    <script src="assets/js/main.js"></script>
-
-   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-103796334-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-103796334-1');
 </script>
