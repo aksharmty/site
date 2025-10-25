@@ -62,47 +62,60 @@
 
                     <div class="cause">                        
  <script>
-var varurl = window.location.href;;
+const currentUrl = window.location.href;
+// Create a URL object
+const url = new URL(currentUrl);
+
+// Access the searchParams object
+const params = url.searchParams;
+
+// Get the value of the 'id' parameter
+var id = params.get('id');
+if (!id || parseInt(id) > 9) {
+  varurl = 0;
+} else {
+  varurl = parseInt(id);
+}
 
     var ques;
     var ans;
     
-if (varurl === "ram-shalaka.html?id=1") {
+if (varurl === 1) {
 ques = "चौपाई :	उघरहिं अंत न होइ निबाहू। कालनेमि जिमि रावन राहू॥";
 ans ="अर्थ:यह चौपाई बालकाण्ड के आरम्भ की है। कार्य की सफलता मे संदेह है।\r\n";
     } 
-if (varurl === "ram-shalaka.html?id=2") {
+if (varurl === 2) {
 ques = "चौपाई :गरल सुधा रिपु करहिं मिताई। गोपद सिंधु अनल सितला";
 ans = "अर्थ:यह चौपाई सुन्दरकाण्ड मे हनुमान जी के लंका मे प्रवेश करने के समय की है। प्रश्न बहुत श्रेष्ठ है कार्य सिद्ध होगा।";
 }
-if (varurl === "ram-shalaka.html?id=3") {
+if (varurl === 3) {
 ques = "चौपाई :	प्रबिसि नगर कीजे सब काजा। हृदय राखि कोसलपुर राजा॥";
 ans = 'अर्थ:	यह चौपाई सुन्दरकाण्ड मे हनुमान जी के लंका मे प्रवेश करने के समय की है। अर्थ यह है कि भगवान के नाम का स्मरण करते हुये कार्य शुरू करें सफलता मिलेगी।';
 }
-if (varurl === "ram-shalaka.html?id=4") {
+if (varurl === 4) {
 ques = "चौपाई :	बिधि बस सुजन कुसंगत परहीं। फनि मनि सम निज गुन अनुसरहीं॥";
 ans = 'अर्थ:	यह चौपाई बालकाण्ड के आरम्भ की है। अर्थ यह है कि बुरे लोगों का संग छोड़ दें कार्य की सफलता मे संदेह है।';
 }
-if (varurl === "ram-shalaka.html?id=5") {
+if (varurl === 5) {
 ques = "चौपाई :	मुद मंगलमय संत समाजू। जो जग जंगम तीरथ राजू॥";
 ans = 'अर्थ:	यह चौपाई बालकाण्ड मे संत समाजरुपी तीर्थ वर्णन मे आती है। अर्थ यह है कि कार्य सिद्ध होगा।';
 }
-if (varurl === "ram-shalaka.html?id=6") {
+if (varurl === 6) {
 ques = "चौपाई :	बरुन कुबेर सुरेस समीरा। रन सन्मुखधरि काहु न धीरा॥";
 ans = 'अर्थ:	यह चौपाई रावण वध पर मंदोदरी के विलाप के संदर्भ मे है। कार्य पूरा होने मे संदेह है।';
 }
-if (varurl === "ram-shalaka.html?id=7") {
+if (varurl === 7) {
 ques = "चौपाई :	सुनु सिय सत्य असीस हमारी। पूजहि मन कामना तुम्हारी॥";
 ans = 'अर्थ:	यह चौपाई बालकाण्ड मे सीता जी को गौरी जी का आशिर्वाद है। प्रश्न उत्तम है कार्य सिद्ध होगा।';
 }
-if (varurl === "ram-shalaka.html?id=8") {
+if (varurl === 8) {
 ques = "चौपाई :	सुफल मनोरथ हो हुँ तुम्हारे। रामु लखनु सुनि भए सुखारे॥";
 ans = 'अर्थ:	यह चौपाई विश्वामित्र का आशिर्वाद है। प्रश्न उत्तम है कार्य सिद्ध होगा।';
 }
-if (varurl === "ram-shalaka.html?id=9") {
+if (varurl === 9) {
 ques = "चौपाई : होइहि सोइ जो राम रचि राखा। को करितर्क बढ़ावै साखा॥";
 ans = 'अर्थ: यह चौपाई बालकाण्ड शिव पार्वती संवाद मे है। कार्य पूरा होने मे संदेह है। प्रभु पर छोड़ दें।';}
-if (varurl === "ram-shalaka.html")   
+if (varurl === 0)   
 {ques="नीचे दिये किसी एक वर्ण पर क्लिक करें ";ans="";} 
 </script>  
 <table width="90%">
@@ -114,236 +127,284 @@ if (varurl === "ram-shalaka.html")
   </script></h2><br></td></tr>
 </table>
 
-
-<table style="width:100%" border="1" text-align="center" bgcolor="red" link-color="white"><tr>
-			
-                        <td width="15px"><center> <a  href="?id=7">सु                  </a></center></td>
-			<td width="15px"><center> <a  href="?id=3" >प्र                   </a></center></td>
-			<td width="15px"><center> <a  href="?id=1">उ                    </a></center></td>
-			<td width="15px"><center> <a  href="?id=4">बि                   </a></center></td>
-			<td width="15px"><center> <a  href="?id=9">हो 	                </a></center></td>
-			<td width="15px"><center> <a  href="?id=5">मु 	                </a></center></td>
-			<td width="15px"><center> <a  href="?id=2">ग 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">ब 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">सु 		        </a></center></td>
-			<td width="15px"><center> <a  href="?id=7">नु 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">बि 		        </a></center></td>
-			<td width="15px"><center> <a  href="?id=1">घ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">धि 		        </a></center></td>
-			<td width="15px"><center> <a  href="?id=9">इ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">द 	                </a></center></td>
-		</tr><tr><td width="15px"><center><a  href="?id=2">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">रु 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">फ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">सि 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">सि 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">रहिं 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">बस 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">हि 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">मं 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">ल      		</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">न 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">ल 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">य 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">न 			</a></center></td>
-	        	<td width="15px"><center> <a  href="?id=1">अं 			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a  href="?id=4">सुज 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">सो 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">ग 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">सु 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">कु 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">म 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">स 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">ग 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">त 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">न 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">इ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">ल 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">धा 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">बे 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">नो 			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a  href="?id=7">त्य 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">न 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">कु 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">जो 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">म 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">रि 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">अ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">की 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">हो 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">सं 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">रा 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">य 			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a  href="?id=2">पु 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">सु 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">थ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">सी 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">जे 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">इ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">ग 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">म 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">सं 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">क 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">रे 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">हो 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">स 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">स			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">नि 			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a  href="?id=4">त 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">त 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">स 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">हुँ 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">ह 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">ब 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">ब 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">प 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">चि			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">स 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">हिं 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">स 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">तु 			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a  href="?id=7">म 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">का 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">T 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">र 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">म 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=2">मि 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=6">मी 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=8">म्हा 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=7">T 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=3">जा 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=1">हू 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=4">हीं 			</a></center></td>
-			<td width="15px"><center> <a  href="?id=9">T			</a></center></td>
-			<td width="15px"><center> <a  href="?id=5">T 			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a href="?id=2">ता 			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">रा 			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">रे 			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">री 			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">हृ 			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">का 			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">फ 			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">खा 			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">जू 			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">ई 			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">र 			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">रा 			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">पू 			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">द        		</a></center></td>
-			<td width="15px"><center> <a href="?id=1">ल 			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a href="?id=4">नि 			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">को 			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">जो 			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">गो			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">न 			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">मु			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">ज 			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">य			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">ने			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">मनि			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">क			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">ज			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">प			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">स 			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">ल			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a href="?id=7">हि			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">रा			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">मि			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">स			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">रि			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">ग			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">द			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">न्मु			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">ख			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">म			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">खि			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">जि			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">म			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">त       		</a></center></td>
-			<td width="15px"><center> <a href="?id=5">जं			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a href="?id=2">सिं			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">ख			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">नु			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">न			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">को			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">मि			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">निज			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">र्क			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">ग			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">धु			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">ध			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">सु			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">का			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">स			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">र			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a href="?id=4">गु			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">ब			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">म			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">अ			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">रि			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">नि			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">म			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">ल			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">T			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">न			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">ढ़			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">ती			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">न			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">क			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">भ			</a></center></td>
-</tr><tr>		<td width="15px"><center> <a href="?id=7">ना			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">पु			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">व			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">अ        		</a></center></td>
-			<td width="15px"><center> <a href="?id=9">T			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">र			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">ल			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">T			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">ए			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">तु			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">र			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">न			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">नु			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">वै			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">थ			</a></center></td>
-    </tr><tr>		<td width="15px"><center> <a href="?id=2">सि			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">हु			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">सु			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">म्हा			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">रा			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">र       		</a></center></td>
-			<td width="15px"><center> <a href="?id=4">स			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">स			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">र			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">त			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">न			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">ख			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">T			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">ज			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">T			</a></center></td>
-     </tr><tr>		<td width="15px"><center> <a href="?id=4">र			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">ा			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">ा			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">ला			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">धी			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">ा			</a></center></td>
-			<td width="15px"><center> <a href="?id=7">री			</a></center></td>
-			<td width="15px"><center> <a href="?id=3">ा			</a></center></td>
-			<td width="15px"><center> <a href="?id=1">हू			</a></center></td>
-			<td width="15px"><center> <a href="?id=4">हीं			</a></center></td>
-			<td width="15px"><center> <a href="?id=9">खा			</a></center></td>
-			<td width="15px"><center> <a href="?id=5">जू			</a></center></td>
-			<td width="15px"><center> <a href="?id=2">ई			</a></center></td>
-			<td width="15px"><center> <a href="?id=6">रा			</a></center></td>
-			<td width="15px"><center> <a href="?id=8">रे			</a></center></td
-                        </tr></table>
-	
+<style>
+                        /* ===== Grid wrapper ===== */
+                        .letter-grid-wrapper {
+                            display: grid;
+                            grid-template-columns: repeat(15, 1fr);
+                            /* exactly 15 boxes per row */
+                            gap: 1px;
+                            /* adjust spacing */
+                            max-width: 780px;
+                            /* full width container */
+                            margin: 0 auto;
+                         /*   background: #b71c1c; */
+                            padding: 2px;
+                            border-radius: 1px;
+                        }
+                    
+                    
+                        /* ===== Tile (anchor) styling ===== */
+                        .letter-grid-wrapper a {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-decoration: none;
+                    
+                    
+                            min-height: 30px;
+                            background: #d32f2f;
+                            color: #fff;
+                            border-radius: 0px;
+                            box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 2px 8px rgba(0, 0, 0, .12);
+                            border: 1px solid rgba(255, 255, 255, .18);
+                    
+                    
+                            font-weight: 600;
+                            line-height: 1;
+                            letter-spacing: .3px;
+                            font-size: clamp(12px, 1.8vw, 16px);
+                        }
+                    
+                    
+                        @media (hover: hover) and (pointer: fine) {
+                            .letter-grid-wrapper a:hover {
+                                transform: translateY(-1px);
+                                box-shadow: 0 2px 0 rgba(0, 0, 0, .18), 0 6px 14px rgba(0, 0, 0, .18);
+                            }
+                    
+                            .letter-grid-wrapper a:active {
+                                transform: translateY(0);
+                            }
+                        }
+                    </style>
+                    <div class="letter-grid-wrapper">
+                                 <a style="color:white;text-decoration:none;" href="?id=7">सु </a>
+                                 <a href="?id=3">प्र </a>
+                                 <a href="?id=1">उ </a>
+                                 <a href="?id=4">बि </a>
+                                 <a href="?id=9">हो </a>
+                                 <a href="?id=5">मु </a>
+                                 <a href="?id=2">ग </a>
+                                 <a href="?id=6">ब </a>
+                                 <a href="?id=8">सु </a>
+                                 <a href="?id=7">नु </a>
+                                 <a href="?id=3">बि </a>
+                                 <a href="?id=1">घ </a>
+                                 <a href="?id=4">धि </a>
+                                 <a href="?id=9">इ </a>
+                                 <a href="?id=5">द </a>
+                                <a href="?id=2">र </a>
+                                 <a href="?id=6">रु </a>
+                                 <a href="?id=8">फ </a>
+                                 <a href="?id=7">सि </a>
+                                 <a href="?id=3">सि </a>
+                                 <a href="?id=1">रहिं </a>
+                                 <a href="?id=4">बस </a>
+                                 <a href="?id=9">हि </a>
+                                 <a href="?id=5">मं </a>
+                                 <a href="?id=2">ल </a>
+                                 <a href="?id=6">न </a>
+                                 <a href="?id=8">ल </a>
+                                 <a href="?id=7">य </a>
+                                 <a href="?id=3">न </a>
+                                 <a href="?id=1">अं </a>
+                                 <a href="?id=4">सुज </a>
+                                 <a href="?id=9">सो </a>
+                                 <a href="?id=5">ग </a>
+                                 <a href="?id=2">सु </a>
+                                 <a href="?id=6">कु </a>
+                                 <a href="?id=8">म </a>
+                                 <a href="?id=7">स </a>
+                                 <a href="?id=3">ग </a>
+                                 <a href="?id=1">त </a>
+                                 <a href="?id=4">न </a>
+                                 <a href="?id=9">इ </a>
+                                 <a href="?id=5">ल </a>
+                                 <a href="?id=2">धा </a>
+                                 <a href="?id=6">बे </a>
+                                 <a href="?id=8">नो </a>
+                                 <a href="?id=7">त्य </a>
+                                 <a href="?id=3">र </a>
+                                 <a href="?id=1">न </a>
+                                 <a href="?id=4">कु </a>
+                                 <a href="?id=9">जो </a>
+                                 <a href="?id=5">म </a>
+                                 <a href="?id=2">रि </a>
+                                 <a href="?id=6">र </a>
+                                 <a href="?id=8">र </a>
+                                 <a href="?id=7">अ </a>
+                                 <a href="?id=3">की </a>
+                                 <a href="?id=1">हो </a>
+                                 <a href="?id=4">सं </a>
+                                 <a href="?id=9">रा </a>
+                                 <a href="?id=5">य </a>
+                                 <a href="?id=2">पु </a>
+                                 <a href="?id=6">सु </a>
+                                 <a href="?id=8">थ </a>
+                                 <a href="?id=7">सी </a>
+                                 <a href="?id=3">जे </a>
+                                 <a href="?id=1">इ </a>
+                                 <a href="?id=4">ग </a>
+                                 <a href="?id=9">म </a>
+                                 <a href="?id=5">सं </a>
+                                 <a href="?id=2">क </a>
+                                 <a href="?id=6">रे </a>
+                                 <a href="?id=8">हो </a>
+                                 <a href="?id=7">स </a>
+                                 <a href="?id=3">स </a>
+                                 <a href="?id=1">नि </a>
+                                 <a href="?id=4">त </a>
+                                 <a href="?id=9">र </a>
+                                 <a href="?id=5">त </a>
+                                 <a href="?id=2">र </a>
+                                 <a href="?id=6">स </a>
+                                 <a href="?id=8">हुँ </a>
+                                 <a href="?id=7">ह </a>
+                                 <a href="?id=3">ब </a>
+                                 <a href="?id=1">ब </a>
+                                 <a href="?id=4">प </a>
+                                 <a href="?id=9">चि </a>
+                                 <a href="?id=5">स </a>
+                                 <a href="?id=2">हिं </a>
+                                 <a href="?id=6">स </a>
+                                 <a href="?id=8">तु </a>
+                                 <a href="?id=7">म </a>
+                                 <a href="?id=3">का </a>
+                                 <a href="?id=1">T </a>
+                                 <a href="?id=4">र </a>
+                                 <a href="?id=9">र </a>
+                                 <a href="?id=5">म </a>
+                                 <a href="?id=2">मि </a>
+                                 <a href="?id=6">मी </a>
+                                 <a href="?id=8">म्हा </a>
+                                 <a href="?id=7">T </a>
+                                 <a href="?id=3">जा </a>
+                                 <a href="?id=1">हू </a>
+                                 <a href="?id=4">हीं </a>
+                                 <a href="?id=9">T </a>
+                                 <a href="?id=5">T </a>
+                                 <a href="?id=2">ता </a>
+                                 <a href="?id=6">रा </a>
+                                 <a href="?id=8">रे </a>
+                                 <a href="?id=7">री </a>
+                                 <a href="?id=3">हृ </a>
+                                 <a href="?id=1">का </a>
+                                 <a href="?id=4">फ </a>
+                                 <a href="?id=9">खा </a>
+                                 <a href="?id=5">जू </a>
+                                 <a href="?id=2">ई </a>
+                                 <a href="?id=6">र </a>
+                                 <a href="?id=8">रा </a>
+                                 <a href="?id=7">पू </a>
+                                 <a href="?id=3">द </a>
+                                 <a href="?id=1">ल </a>
+                                 <a href="?id=4">नि </a>
+                                 <a href="?id=9">को </a>
+                                 <a href="?id=5">जो </a>
+                                 <a href="?id=2">गो </a>
+                                 <a href="?id=6">न </a>
+                                 <a href="?id=8">मु </a>
+                                 <a href="?id=7">ज </a>
+                                 <a href="?id=3">य </a>
+                                 <a href="?id=1">ने </a>
+                                 <a href="?id=4">मनि </a>
+                                 <a href="?id=9">क </a>
+                                 <a href="?id=5">ज </a>
+                                 <a href="?id=2">प </a>
+                                 <a href="?id=6">स </a>
+                                 <a href="?id=8">ल </a>
+                                 <a href="?id=7">हि </a>
+                                 <a href="?id=3">रा </a>
+                                 <a href="?id=1">मि </a>
+                                 <a href="?id=4">स </a>
+                                 <a href="?id=9">रि </a>
+                                 <a href="?id=5">ग </a>
+                                 <a href="?id=2">द </a>
+                                 <a href="?id=6">न्मु </a>
+                                 <a href="?id=8">ख </a>
+                                 <a href="?id=7">म </a>
+                                 <a href="?id=3">खि </a>
+                                 <a href="?id=1">जि </a>
+                                 <a href="?id=4">म </a>
+                                 <a href="?id=9">त </a>
+                                 <a href="?id=5">जं </a>
+                                 <a href="?id=2">सिं </a>
+                                 <a href="?id=6">ख </a>
+                                 <a href="?id=8">नु </a>
+                                 <a href="?id=7">न </a>
+                                 <a href="?id=3">को </a>
+                                 <a href="?id=1">मि </a>
+                                 <a href="?id=4">निज </a>
+                                 <a href="?id=9">र्क </a>
+                                 <a href="?id=5">ग </a>
+                                 <a href="?id=2">धु </a>
+                                 <a href="?id=6">ध </a>
+                                 <a href="?id=8">सु </a>
+                                 <a href="?id=7">का </a>
+                                 <a href="?id=3">स </a>
+                                 <a href="?id=1">र </a>
+                                 <a href="?id=4">गु </a>
+                                 <a href="?id=9">ब </a>
+                                 <a href="?id=5">म </a>
+                                 <a href="?id=2">अ </a>
+                                 <a href="?id=6">रि </a>
+                                 <a href="?id=8">नि </a>
+                                 <a href="?id=7">म </a>
+                                 <a href="?id=3">ल </a>
+                                 <a href="?id=1">T </a>
+                                 <a href="?id=4">न </a>
+                                 <a href="?id=9">ढ़ </a>
+                                 <a href="?id=5">ती </a>
+                                 <a href="?id=2">न </a>
+                                 <a href="?id=6">क </a>
+                                 <a href="?id=8">भ </a>                            
+                                 <a href="?id=7">ना </a>
+                                 <a href="?id=3">पु </a>
+                                 <a href="?id=1">व </a>
+                                 <a href="?id=4">अ </a>
+                                 <a href="?id=9">T </a>
+                                 <a href="?id=5">र </a>
+                                 <a href="?id=2">ल </a>                            
+                                 <a href="?id=6">T </a>                            
+                                 <a href="?id=8">ए </a>
+                                 <a href="?id=7">तु </a>
+                                 <a href="?id=3">र </a>
+                                 <a href="?id=1">न </a>
+                                 <a href="?id=4">नु </a>
+                                 <a href="?id=9">वै </a>
+                                 <a href="?id=5">थ </a>
+                                 <a href="?id=2">सि </a>
+                                 <a href="?id=6">हु </a>
+                                 <a href="?id=8">सु </a>
+                                 <a href="?id=7">म्हा </a>
+                                 <a href="?id=3">रा </a>
+                                 <a href="?id=1">र </a>
+                                 <a href="?id=4">स </a>                            
+                                 <a href="?id=9">स </a>
+                                 <a href="?id=5">र </a>
+                                 <a href="?id=2">त </a>
+                                 <a href="?id=6">न </a>
+                                 <a href="?id=8">ख </a>
+                                 <a href="?id=7">T </a>
+                                 <a href="?id=3">ज </a>
+                                 <a href="?id=1">T </a>
+                                 <a href="?id=4">र </a>
+                                 <a href="?id=9">ा </a>
+                                 <a href="?id=5">ा </a>
+                                 <a href="?id=2">ला </a>
+                                 <a href="?id=6">धी </a>
+                                 <a href="?id=8">ा </a>
+                                 <a href="?id=7">री </a>
+                                 <a href="?id=3">ा </a>
+                                 <a href="?id=1">हू </a>                            
+                                 <a href="?id=4">हीं </a>
+                                 <a href="?id=9">खा </a>
+                                 <a href="?id=5">जू </a>
+                                 <a href="?id=2">ई </a>
+                                 <a href="?id=6">रा </a>
+                                 <a href="?id=8">रे </a>
+                    </div>		
                                         
 </div>
                      <!-- /.cause -->
