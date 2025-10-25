@@ -1,4 +1,17 @@
-     <footer class="main-footer">
+<button id="topBtn" title="Go to top">↑</button>
+
+<script>
+  const topBtn = document.getElementById("topBtn");
+  window.onscroll = function() {
+    if (document.documentElement.scrollTop > 100) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  };
+  topBtn.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+</script>
+<footer class="main-footer">
 
         <div class="footer-top">
         </div>
@@ -56,7 +69,11 @@ Affiliate Partner
         <div class="footer-bottom">
 
             <div class="container text-left">
-              <a href="index.html">Akshar Mantra Tantra Yantra</a>   @ copyrights 2005-22 - & Design by <a href="https://sakhihosting.adquash.com" target="_blank">Sakhi Hosting</a>
+              <a href="index.html">Akshar Mantra Tantra Yantra</a>   @ copyrights 2005- <script>
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.getElementById("year").textContent = new Date().getFullYear();
+});
+</script> - & Design by <a href="https://sakhihosting.adquash.com" target="_blank">Sakhi Hosting</a>
             </div>
             <div class="container text-right"><a href="terms.html" target="_blank">Terms</a></div>
         </div>
