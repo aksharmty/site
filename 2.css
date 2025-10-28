@@ -54,9 +54,9 @@ html {
 .right-panel{ background-color:#fff;float:right;overflow:hidden;margin:10px 1px 0px 1px;}
 .right-panel1{width:23%;position:fixed;background-color:#fff;float:right;overflow:hidden;border:1px solid green;top:80px;right:10px; display: none;}
 /*.right-panel.fixed {width:23%;background-color:#fff;float:right;overflow:hidden;border:1px solid green;top:80px;right:10px;}*/
-.footer{width:100%;background-color:#79d17b; margin-top:10px;border-top:1px solid #030ffc;bottom:10px;text-align:left;padding:10px;}
+.footer{width:100%;background-color:#111157; color:#fff; margin-top:10px;border-top:1px solid #030ffc;bottom:10px;text-align:left;padding:10px;}
 @media (min-width: 769px) {.right-panel2{display:none;}
-    /*col size */
+    /*col size #79d17b */
   .col-md-1 {width: 8.33%;}
   .col-md-2 {width: 16.66%;}
   .col-md-3 {width: 25%;}
