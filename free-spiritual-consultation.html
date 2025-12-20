@@ -149,22 +149,33 @@ We respect your privacy. All personal details are removed within 7 days.
 document.getElementById("whatsappForm").addEventListener("submit", function(e){
     e.preventDefault();
 
-    var phone = "919213816442"; // ← Replace with your WhatsApp number
+    var phone = "919213816442";
+
+    // ✅ Elements ko properly fetch karo
+    var nameVal = document.getElementById("name").value;
+    var emailVal = document.getElementById("email").value;
+    var birthDateVal = document.getElementById("birth_date").value;
+    var birthTimeVal = document.getElementById("birth_time").value;
+    var birthPlaceVal = document.getElementById("birth_place").value;
+    var countryVal = document.getElementById("birth_country").value;
+    var motherVal = document.getElementById("mother_name").value;
+    var topicVal = document.getElementById("topic").value;
+    var messageVal = document.getElementById("message").value;
 
     var text =
 `*Free Spiritual Consultation Request*
 
-Name: ${name.value}
-Email: ${email.value}
-DOB: ${birth_date.value}
-Birth Time: ${birth_time.value}
-Birth Place: ${birth_place.value}
-Country: ${birth_country.value}
-Mother's Name: ${mother_name.value}
-Topic: ${topic.value}
+Name: ${nameVal}
+Email: ${emailVal}
+DOB: ${birthDateVal}
+Birth Time: ${birthTimeVal}
+Birth Place: ${birthPlaceVal}
+Country: ${countryVal}
+Mother's Name: ${motherVal}
+Topic: ${topicVal}
 
 Problem:
-${message.value}
+${messageVal}
 
 (Language: Hindi / Hinglish)`;
 
@@ -172,6 +183,7 @@ ${message.value}
     window.open(url, "_blank");
 });
 </script>
+
 
 <p class="notice">
 Answer will be provided in <strong>Hindi or Hinglish</strong>.<br>
