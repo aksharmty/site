@@ -3,6 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <link rel='shortcut icon' href='logo-aksharmty.png' type='image/x-icon' />
+<meta name="robots" content="index, follow">
+<meta name="author" content="Akshar Mantra Tantra Yantra">
+<title>Free Spiritual Consultation via WhatsApp | Akshar Mantra Tantra Yantra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="free spiritual consultation, online spiritual guidance, spiritual advice india, career marriage health solution, whatsapp spiritual consultation, Akshar Mantra Tantra Yantra">
+<meta name="description" content="Get free spiritual consultation via WhatsApp for Career, Marriage and Health. Trusted guidance by Akshar Mantra Tantra Yantra. Solution sent via WhatsApp within 24 hours.">
+
+<!-- Open Graph / Social SEO -->
+<meta property="og:title" content="Free Spiritual Consultation via WhatsApp | Akshar Mantra Tantra Yantra">
+<meta property="og:description" content="Get free spiritual consultation via WhatsApp for Career, Marriage & Health. Trusted guidance by Akshar Mantra Tantra Yantra. Solution sent via WhatsApp within 24 hours.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aksharmty.adquash.com/free-spiritual-consultation.html">
+<meta property="og:image" content="https://aksharmty.adquash.com/logo-aksharmty.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Spiritual Consultation via WhatsApp | Akshar Mantra Tantra Yantra">
+<meta name="twitter:description" content="Online spiritual guidance for Career, Marriage & Health. Free consultation via WhatsApp. Solution sent within 24 hours.">
+<meta name="twitter:image" content="https://aksharmty.adquash.com/logo-aksharmty.png">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Akshar Mantra Tantra Yantra Spiritual Consultation",
+  "url": "https://aksharmty.adquash.com/free-spiritual-consultation.html",
+  "logo": "https://aksharmty.adquash.com/logo-aksharmty.png",
+  "description": "Free spiritual consultation via WhatsApp for career, marriage and health guidance. Solutions delivered within 24 hours. Premium phone consultation available for India.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Akshar Mantra Tantra Yantra",
+    "url": "https://aksharmty.adquash.com"
+  },
+  "areaServed": "Worldwide",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceLocation": {
+      "@type": "VirtualLocation",
+      "url": "https://aksharmty.adquash.com/free-spiritual-consultation.html"
+    }
+  }
+}
+</script>
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="w3.js"></script>
+</head>
+
+<body>
+
+<div w3-include-html="menu.html"></div>
+
+<div class="section-home our-causes">
+<div class="container">
+<div class="row">
+<div class="col-md-9 col-sm-6">
+
+<style>
+label{display:block;margin-top:15px;font-weight:bold}
+input,select,textarea{width:100%;padding:10px;margin-top:5px;border:1px solid #ccc;border-radius:4px}
+textarea{min-height:100px}
+button{margin-top:20px;padding:12px 20px;background:#4a2c82;color:#fff;border:none;border-radius:4px;font-size:16px;cursor:pointer}
+button:hover{background:#3a2166}
+.notice{font-size:13px;color:#555;margin-top:10px}
+</style>
+
+<h1>Free Spiritual Consultation via WhatsApp</h1>
+<p>Career • Marriage • Health</p>
+
+<form id="whatsappForm">
+
+<label>Full Name</label>
+<input type="text" id="name" required>
+
+<label>Email Address</label>
+<input type="email" id="email" required>
+
+<label>Birth Date</label>
+<input type="date" id="birth_date" required>
+
+<label>Birth Time</label>
+<input type="time" id="birth_time">
+
+<label>Birth Place</label>
+<input type="text" id="birth_place" required>
+
+<label>Country of Birth</label>
+<input type="text" id="birth_country" required>
+
+<label>Mother's Name</label>
+<input type="text" id="mother_name" required>
+
+<label>Consultation Topic</label>
+<select id="topic" required>
+<option value="">Select</option>
+<option>Career</option>
+<option>Marriage</option>
+<option>Health</option>
+<option>Other</option>
+</select>
+
+<label>Your Problem / Question</label>
+<textarea id="message" required></textarea>
+
+<p class="notice">
+By clicking <strong>Send on WhatsApp</strong>, you consent to share your details for consultation purposes.
+We respect your privacy. All personal details are removed within 7 days.
+</p>
+
+<button type="submit">Send on WhatsApp</button>
+
+</form>
+
+<script>
+document.getElementById("whatsappForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    var phone = "91XXXXXXXXXX"; // ← Replace with your WhatsApp number
+
+    var text =
+`*Free Spiritual Consultation Request*
+
+Name: ${name.value}
+Email: ${email.value}
+DOB: ${birth_date.value}
+Birth Time: ${birth_time.value}
+Birth Place: ${birth_place.value}
+Country: ${birth_country.value}
+Mother's Name: ${mother_name.value}
+Topic: ${topic.value}
+
+Problem:
+${message.value}
+
+(Language: Hindi / Hinglish)`;
+
+    var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+    window.open(url, "_blank");
+});
+</script>
+
+<p class="notice">
+Answer will be provided in <strong>Hindi or Hinglish</strong>.<br>
+This service provides spiritual guidance only. Not medical or legal advice.
+</p>
+
+</div>
+
+<div class="col-md-3 col-sm-6">
+<div w3-include-html="sidebar.html"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<footer class="main-footer">
+<div w3-include-html="footer.html"></div>
+<script>w3.includeHTML();</script>
+</footer>
+
+</body>
+</html>----
+<!-- DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel='shortcut icon' href='logo-aksharmty.png' type='image/x-icon' />
 <meta name="msvalidate.01" content="F1178E06F62827B2DD8EF2FE31CC0EBF" />
 <meta name="robots" content="index, follow">
 <meta name="author" content="Akshar Mantra Tantra Yantra">
@@ -12,14 +182,14 @@
 <meta name="description" content="Free spiritual consultation by Akshar Mantra Tantra Yantra via email. Get guidance for Career, Marriage and Health issues. Trusted online spiritual advice with solution delivered within 24 hours.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Open Graph / Social SEO -->
+< !-- Open Graph / Social SEO -- >
 <meta property="og:title" content="Free Spiritual Consultation Online | Akshar Mantra Tantra Yantra">
 <meta property="og:description" content="Get free spiritual consultation via email for Career, Marriage & Health. Trusted guidance by Akshar Mantra Tantra Yantra. Solution within 24 hours.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aksharmty.adquash.com/free-spiritual-consultation.html">
 <meta property="og:image" content="https://aksharmty.adquash.com/logo-aksharmty.png">
 
-<!-- Twitter Card -->
+< !-- Twitter Card --  >
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free Spiritual Consultation | Akshar Mantra Tantra Yantra">
 <meta name="twitter:description" content="Online spiritual guidance for Career, Marriage & Health. Free consultation via email. Solution in 24 hours.">
@@ -99,7 +269,7 @@ button:hover{background:#3a2166}
 <p></p>
 </div>
 
-<!-- Premium Consultation Highlight (India Only) -->
+< !-- Premium Consultation Highlight (India Only) -- >
 <div id="premiumTop" style="margin:25px 0;padding:18px;border:2px solid #4a2c82;border-radius:8px;background:#faf7ff;display:none">
 <h2 style="margin-top:0;color:#4a2c82">Premium Phone Consultation (India Only)</h2>
 <p style="margin-bottom:8px;color:#333">Prefer direct interaction with a spiritual advisor?</p>
@@ -162,7 +332,7 @@ button:hover{background:#3a2166}
 <button type="submit">Submit for Free Consultation</button>
 </form>
 
-<!-- FAQ Section -->
+< !-- FAQ Section -- >
 <div style="margin-top:40px">
 <h2 style="font-size:22px;color:#4a2c82;margin-bottom:15px">Frequently Asked Questions</h2>
 
@@ -241,7 +411,7 @@ Delhi-India.
                 </div>
                         
 
-                    </div> <!-- /.cause -->
+                    </div> < !-- /.cause -- >
                      
                                
                  <div class="col-md-3 col-sm-6">
@@ -254,7 +424,7 @@ Delhi-India.
 
         </div>
         
-    </div> <!-- /.our-causes -->
+    </div> < !-- /.our-causes -- >
 
 
     
@@ -263,23 +433,23 @@ Delhi-India.
     <footer class="main-footer">
 <div w3-include-html="footer.html"></div> 
 
-<!--  Scripts
-    ================================================== -->
+< !--  Scripts
+    ================================================== -- >
 
-    <!-- jQuery -->
+    < !-- jQuery -- >
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
 
-    <!-- Bootsrap javascript file -->
+    < !-- Bootsrap javascript file -- >
     <script src="assets/js/bootstrap.min.js"></script>
     
-    <!-- owl carouseljavascript file -->
+    < !-- owl carouseljavascript file -- >
     <script src="assets/js/owl.carousel.min.js"></script>
 
-    <!-- Template main javascript -->
+    < !-- Template main javascript -- >
     <script src="assets/js/main.js"></script>
    
-<!-- Global site tag (gtag.js) - Google Analytics -->
+< !-- Global site tag (gtag.js) - Google Analytics -- >
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103796334-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
