@@ -61,18 +61,45 @@
 <div class="container">
 <div class="row">
 <div class="col-md-9 col-sm-6">
-
-<style>
+<div class="cause">
+                   <div class="cause-details">
+                      <style>
+h1{font-size:26px;margin-bottom:10px;color:#4a2c82}
+.subtitle{color:#555;margin-bottom:20px}
 label{display:block;margin-top:15px;font-weight:bold}
 input,select,textarea{width:100%;padding:10px;margin-top:5px;border:1px solid #ccc;border-radius:4px}
-textarea{min-height:100px}
+textarea{resize:vertical;min-height:100px}
 button{margin-top:20px;padding:12px 20px;background:#4a2c82;color:#fff;border:none;border-radius:4px;font-size:16px;cursor:pointer}
 button:hover{background:#3a2166}
-.notice{font-size:13px;color:#555;margin-top:10px}
+.notice{margin-top:20px;font-size:14px;color:#666}
+.premium{margin-top:25px;padding:15px;border:1px dashed #4a2c82;border-radius:6px;display:none}
 </style>
+<h1>Free Spiritual Consultation by Akshar Mantra Tantra Yantra</h1>
+<p class="subtitle">Get spiritual guidance via whatsapp for Career, Marriage & Health</p>
 
-<h1>Free Spiritual Consultation via WhatsApp</h1>
-<p>Career • Marriage • Health</p>
+<div style="font-size:15px;color:#444;line-height:1.7;margin-bottom:25px">
+<p>At times in life, we face situations where confusion, stress, or uncertainty related to career, marriage, or health can feel overwhelming. During such moments, the right guidance and positive direction can help bring clarity and peace.</p>
+
+<p><strong>Akshar Mantra Tantra Yantra</strong> offers a <strong>free spiritual consultation service</strong> where you can share your concerns through whatsapp. Our experienced spiritual advisors carefully review your situation and provide thoughtful spiritual guidance tailored to your needs.</p>
+
+<p><strong>What you will receive:</strong></p>
+<ul>
+<li>Spiritual guidance for Career, Marriage, and Health-related concerns</li>
+<li>100% confidential and fully online consultation</li>
+<li>Personalized response delivered via email</li>
+<li><strong>Solution will be sent within 24 hours</strong></li>
+</ul>
+
+<p></p>
+</div>
+
+<!-- Premium Consultation Highlight (India Only) -->
+<div id="premiumTop" style="margin:25px 0;padding:18px;border:2px solid #4a2c82;border-radius:8px;background:#faf7ff;display:none">
+<h2 style="margin-top:0;color:#4a2c82">Premium Phone Consultation (India Only)</h2>
+<p style="margin-bottom:8px;color:#333">Prefer direct interaction with a spiritual advisor?</p>
+<p style="margin:0"><strong>Fee:</strong> ₹100 per call &nbsp;|&nbsp; <strong>Mode:</strong> Phone Consultation</p>
+<p style="margin-top:8px;font-size:14px;color:#555">Available for users located in India. Appointment based.</p>
+</div>
 
 <form id="whatsappForm">
 
@@ -122,7 +149,7 @@ We respect your privacy. All personal details are removed within 7 days.
 document.getElementById("whatsappForm").addEventListener("submit", function(e){
     e.preventDefault();
 
-    var phone = "91XXXXXXXXXX"; // ← Replace with your WhatsApp number
+    var phone = "919213816442"; // ← Replace with your WhatsApp number
 
     var text =
 `*Free Spiritual Consultation Request*
@@ -150,9 +177,71 @@ ${message.value}
 Answer will be provided in <strong>Hindi or Hinglish</strong>.<br>
 This service provides spiritual guidance only. Not medical or legal advice.
 </p>
+                     < 
+                          !-- FAQ Section -- >
+<div style="margin-top:40px">
+<h2 style="font-size:22px;color:#4a2c82;margin-bottom:15px">Frequently Asked Questions</h2>
 
+<h3 style="font-size:16px;margin-bottom:5px">Is this spiritual consultation really free?</h3>
+<p style="margin-top:0;color:#444">Yes. The email-based spiritual consultation is completely free. You only need to submit your concern through the form, and our team will review it.</p>
+
+<h3 style="font-size:16px;margin-bottom:5px">When will I receive my solution?</h3>
+<p style="margin-top:0;color:#444">You will receive a response via email within 24 hours after submitting your consultation request.</p>
+
+<h3 style="font-size:16px;margin-bottom:5px">What type of issues can I ask about?</h3>
+<p style="margin-top:0;color:#444">You may ask questions related to career decisions, marriage or relationship concerns, health-related stress, or general life challenges.</p>
+
+<h3 style="font-size:16px;margin-bottom:5px">Is my information kept confidential?</h3>
+<p style="margin-top:0;color:#444">Absolutely. All information shared through this form is kept strictly confidential and used only for providing spiritual guidance.</p>
 </div>
+<div class="col-md-12 col-sm-6">
+<div class="col-md-6 col-sm-6">
+<center><img src="logo-aksharmty.png" alt="Guru Raj Kumar" style="width:150px;height:150px; overflow:hidden;align:left;"><br>
 
+                      </center>
+</div>                        
+<div class="col-md-6 col-sm-6">
+Guru Raj Kumar <br> Spiritual Healer and Consultant<br>
+Akshar Mantra Tantra Yantra - Since 2005<br>
+J-34/209, Gali No.4<br>
+West Sagarpur,New Delhi-110046<br>
+Delhi-India.
+</div>
+</div>
+<script>
+// IP-based India detection using real API
+fetch('https://ipapi.co/json/')
+  .then(response => response.json())
+  .then(data => {
+    if(data.country === 'IN'){
+      document.getElementById('premiumTop').style.display = 'block';
+    }
+  })
+  .catch(err => console.log('IP detection failed'));
+
+// Status message handler after redirect
+const params = new URLSearchParams(window.location.search);
+const status = params.get('status');
+if(status){
+  let msg = '';
+  if(status === 'success'){
+    msg = 'Thank you! Your request has been received. Solution will be sent within 24 hours.';
+  }
+  if(status === 'fail'){
+    msg = 'Something went wrong. Please try again.';
+  }
+  if(msg){
+    const div = document.createElement('div');
+    div.style.padding = '12px';
+    div.style.marginBottom = '15px';
+    div.style.background = status === 'success' ? '#009900' : '#ff0000';
+    div.style.color = '#ffffff';
+    div.style.border = '1px solid #ccc';
+    div.innerText = msg;
+    document.querySelector('.container').prepend(div);
+  }
+}
+</script>
 <div class="col-md-3 col-sm-6">
 <div w3-include-html="sidebar.html"></div>
 </div>
@@ -167,8 +256,9 @@ This service provides spiritual guidance only. Not medical or legal advice.
 </footer>
 
 </body>
-</html>----
-<!-- DOCTYPE html>
+</html>
+< 
+  !-- DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -182,19 +272,22 @@ This service provides spiritual guidance only. Not medical or legal advice.
 <meta name="description" content="Free spiritual consultation by Akshar Mantra Tantra Yantra via email. Get guidance for Career, Marriage and Health issues. Trusted online spiritual advice with solution delivered within 24 hours.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-< !-- Open Graph / Social SEO -- >
+<
+  !-- Open Graph / Social SEO -- >
 <meta property="og:title" content="Free Spiritual Consultation Online | Akshar Mantra Tantra Yantra">
 <meta property="og:description" content="Get free spiritual consultation via email for Career, Marriage & Health. Trusted guidance by Akshar Mantra Tantra Yantra. Solution within 24 hours.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aksharmty.adquash.com/free-spiritual-consultation.html">
 <meta property="og:image" content="https://aksharmty.adquash.com/logo-aksharmty.png">
 
-< !-- Twitter Card --  >
+< 
+  !-- Twitter Card --  >
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free Spiritual Consultation | Akshar Mantra Tantra Yantra">
 <meta name="twitter:description" content="Online spiritual guidance for Career, Marriage & Health. Free consultation via email. Solution in 24 hours.">
 <meta name="twitter:image" content="https://aksharmty.adquash.com/logo-aksharmty.png">
- <!-- JSON-LD Structured Data -->
+ <
+  !-- JSON-LD Structured Data -- >
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -269,7 +362,8 @@ button:hover{background:#3a2166}
 <p></p>
 </div>
 
-< !-- Premium Consultation Highlight (India Only) -- >
+<
+                          !-- Premium Consultation Highlight (India Only) -- >
 <div id="premiumTop" style="margin:25px 0;padding:18px;border:2px solid #4a2c82;border-radius:8px;background:#faf7ff;display:none">
 <h2 style="margin-top:0;color:#4a2c82">Premium Phone Consultation (India Only)</h2>
 <p style="margin-bottom:8px;color:#333">Prefer direct interaction with a spiritual advisor?</p>
@@ -332,7 +426,8 @@ button:hover{background:#3a2166}
 <button type="submit">Submit for Free Consultation</button>
 </form>
 
-< !-- FAQ Section -- >
+< 
+                          !-- FAQ Section -- >
 <div style="margin-top:40px">
 <h2 style="font-size:22px;color:#4a2c82;margin-bottom:15px">Frequently Asked Questions</h2>
 
@@ -411,7 +506,8 @@ Delhi-India.
                 </div>
                         
 
-                    </div> < !-- /.cause -- >
+                    </div> <
+              !-- /.cause -- >
                      
                                
                  <div class="col-md-3 col-sm-6">
@@ -424,7 +520,8 @@ Delhi-India.
 
         </div>
         
-    </div> < !-- /.our-causes -- >
+    </div> <
+      !-- /.our-causes -- >
 
 
     
@@ -433,23 +530,29 @@ Delhi-India.
     <footer class="main-footer">
 <div w3-include-html="footer.html"></div> 
 
-< !--  Scripts
+<
+      !--  Scripts
     ================================================== -- >
 
-    < !-- jQuery -- >
+    <
+      !-- jQuery -- >
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
 
-    < !-- Bootsrap javascript file -- >
+    <
+      !-- Bootsrap javascript file -- >
     <script src="assets/js/bootstrap.min.js"></script>
     
-    < !-- owl carouseljavascript file -- >
+    <
+      !-- owl carouseljavascript file -- >
     <script src="assets/js/owl.carousel.min.js"></script>
 
-    < !-- Template main javascript -- >
+    <
+      !-- Template main javascript -- >
     <script src="assets/js/main.js"></script>
    
-< !-- Global site tag (gtag.js) - Google Analytics -- >
+<
+      !-- Global site tag (gtag.js) - Google Analytics -- >
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103796334-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
