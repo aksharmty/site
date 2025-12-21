@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<title>Free Kundli Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body{font-family:Arial;background:#f5f5f5;margin:0;padding:0}
+.container{max-width:900px;margin:auto;background:#fff;padding:20px}
+h1,h2,h3{color:#8b0000}
+label{display:block;margin-top:10px}
+input,button{width:100%;padding:8px;margin-top:5px}
+button{background:#8b0000;color:#fff;border:none;cursor:pointer}
+ul{padding-left:20px}
+footer{margin-top:30px;font-size:13px;color:#555;border-top:1px solid #ddd;padding-top:10px}
+.suggest{background:#eee;padding:5px;cursor:pointer}
+.north-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:10px 0}
+.nbox{border:1px solid #000;min-height:70px;font-size:12px;padding:4px;text-align:center}
+@media(max-width:600px){.north-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>Free Kundli Generator</h1>
+
+<label>जन्म तिथि (Birth Date)</label>
+<input type="date" id="dob">
+
+<label>जन्म समय (Birth Time)</label>
+<input type="time" id="tob">
+
+<label>जन्म स्थान (City)</label>
+<input type="text" id="city" placeholder="Jaipur, India" oninput="citySuggest()">
+<div id="suggestions"></div>
+
+<button onclick="generateKundli()">कुंडली बनाएं</button>
+
+<div id="output"></div>
+
+<footer>
+<b>Akshar Mantra Tantra Yantra</b><br>
+यह रिपोर्ट केवल शैक्षणिक एवं सामान्य मार्गदर्शन हेतु है।
+</footer>
+</div>
+
+<script>
+let cityCache={},selectedCity=null;
+
+/* ---------- CITY AUTOCOMPLETE ---------- */
+function citySuggest(){
+  let q=document.getElementById("city").value;
+  if(q.length<3) return;
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${q}`)
+  .then(r=>r.json())
+  .then(data=>{
+    let s=document.getElementById("suggestions");
+    s.innerHTML="";
+    data.slice(0,5).forEach(c=>{
+      let d=document.createElement("div");
+      d.className="suggest";
+      d.innerText=c.display_name;
+      d.onclick=()=>{
+        document.getElementById("city").value=c.display_name;
+        selectedCity={lat:c.lat,lon:c.lon};
+        s.innerHTML="";
+      };
+      s.appendChild(d);
+    });
+  });
+}
+
+/* ---------- KUNDLI GENERATION ---------- */
+function generateKundli(){
+  if(!selectedCity){alert("Please select city from suggestion"); return;}
+  let dob=document.getElementById("dob").value;
+  let tob=document.getElementById("tob").value;
+  if(!dob || !tob){alert("Enter date & time"); return;}
+
+  let payload={
+    dob:dob,
+    tob:tob,
+    lat:selectedCity.lat,
+    lon:selectedCity.lon,
+    tz:5.5
+  };
+
+  document.getElementById("output").innerHTML="Generating kundli...";
+
+  /* ---------- ASTROLOGY API ---------- */
+  fetch("https://json.freeastrologyapi.com/api/v1/astro_details",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","x-api-key":"J8H3D5VCGmnoeQ5J07Y27jlSuXTF4XS2HAFlDCUc"},
+    body:JSON.stringify({
+      day:+dob.split("-")[2],
+      month:+dob.split("-")[1],
+      year:+dob.split("-")[0],
+      hour:+tob.split(":")[0],
+      min:+tob.split(":")[1],
+      lat:+selectedCity.lat,
+      lon:+selectedCity.lon,
+      tzone:5.5
+    })
+  })
+  .then(r=>r.json())
+  .then(d=>renderResult(d))
+  .catch(()=>alert("API error"));
+}
+
+/* ---------- RULE-BASED PREDICTIONS & YOG ENGINE ---------- */
+const signLords={Aries:"Mars",Taurus:"Venus",Gemini:"Mercury",Cancer:"Moon",
+Leo:"Sun",Virgo:"Mercury",Libra:"Venus",Scorpio:"Mars",
+Sagittarius:"Jupiter",Capricorn:"Saturn",Aquarius:"Saturn",Pisces:"Jupiter"};
+
+function generatePredictions(d){
+ let r={career:[],finance:[],marriage:[],health:[]};
+ let lagna=d.ascendant.sign;
+ let dasha=d.vimshottari_dasha[0].planet;
+
+ if(dasha===signLords[lagna]) r.career.push("वर्तमान महादशा आत्म-विकास व करियर उन्नति में सहायक।");
+ if(d.houses[1].planets.length||d.houses[10].planets.length) r.finance.push("धन योग सक्रिय, आय में सुधार संभव।");
+ if(d.houses[6].planets.includes("Venus")||d.houses[6].planets.includes("Jupiter"))
+   r.marriage.push("विवाह में सहयोग और स्थिरता।");
+ else r.marriage.push("विवाह में धैर्य आवश्यक।");
+ if(dasha==="Saturn"||dasha==="Mars") r.health.push("स्वास्थ्य में अनुशासन रखें।");
+ else r.health.push("सामान्य स्वास्थ्य अनुकूल।");
+
+ return r;
+}
+
+function detectYogs(d){
+  let yogs=[];
+  const h=d.houses;
+  // Gajkesari Yog
+  if(h[0].planets.includes("Moon") && (h[0].planets.includes("Jupiter") || h[3].planets.includes("Jupiter") || h[6].planets.includes("Jupiter") || h[9].planets.includes("Jupiter")))
+    yogs.push("गजकेसरी योग – बुद्धि, सम्मान व समृद्धि के संकेत");
+  // Budhaditya Yog
+  Object.values(h).forEach(x=>{if(x.planets.includes("Sun") && x.planets.includes("Mercury")) yogs.push("बुधादित्य योग – बुद्धि, वाणी व प्रशासनिक क्षमता");});
+  // Dhan Yog
+  if(h[1].planets.length || h[10].planets.length) yogs.push("धन योग – आय व संचय में वृद्धि के योग");
+  // Raj Yog
+  if(h[0].planets.length && h[4].planets.length) yogs.push("राज योग – पद, प्रतिष्ठा व नेतृत्व के संकेत");
+  if(!yogs.length) yogs.push("प्रमुख योग स्पष्ट नहीं, फल दशा पर निर्भर");
+  return yogs;
+}
+
+/* ---------- RENDER & PDF ---------- */
+function renderResult(d){
+  const p=generatePredictions(d);
+  const yogs=detectYogs(d);
+  let html=`<h2>Ascendant: ${d.ascendant.sign}</h2>`;
+  html+=`<h3>Mahadasha: ${d.vimshottari_dasha[0].planet}</h3>`;
+  html+=`<h3>Career</h3><ul>${p.career.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  html+=`<h3>Finance</h3><ul>${p.finance.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  html+=`<h3>Marriage</h3><ul>${p.marriage.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  html+=`<h3>Health</h3><ul>${p.health.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  html+=`<h3>Special Yog</h3><ul>${yogs.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  html+=`<button onclick='downloadPDF()'>Download PDF</button>`;
+  document.getElementById("output").innerHTML=html;
+  window._pdfData={d,p,yogs};
+}
+
+function downloadPDF(){
+  const { jsPDF }=window.jspdf;
+  let pdf=new jsPDF(),y=10;
+  pdf.setFontSize(14); pdf.text("Free Kundli Report",10,y); y+=10;
+  pdf.setFontSize(10);
+  pdf.text("Ascendant: "+_pdfData.d.ascendant.sign,10,y); y+=7;
+  pdf.text("Mahadasha: "+_pdfData.d.vimshottari_dasha[0].planet,10,y); y+=10;
+  pdf.text("Predictions:",10,y); y+=7;
+  ["career","finance","marriage","health"].forEach(k=>{
+    _pdfData.p[k].forEach(t=>{pdf.text("- "+t,10,y); y+=6;});
+  });
+  y+=5; pdf.text("Special Yog:",10,y); y+=7;
+  _pdfData.yogs.forEach(t=>{pdf.text("- "+t,10,y); y+=6;});
+  y+=10; pdf.text("Akshar Mantra Tantra Yantra",10,y); y+=6;
+  pdf.text("यह रिपोर्ट केवल शैक्षणिक एवं सामान्य मार्गदर्शन हेतु है।",10,y);
+  pdf.save("kundli.pdf");
+}
+</script>
+</body>
+</html>
