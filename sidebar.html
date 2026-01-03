@@ -5,9 +5,8 @@
           <iframe data-aa='2415132' src='//ad.a-ads.com/2415132/?size=300x250'
                             style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
 </div>
-<!-- Google AdSense -->
-<div class="google-ad-container">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
+<div id="adsenseBox" style="display:none;">
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
      crossorigin="anonymous"></script>
   <!-- 300x250 Ad -->
   <ins class="adsbygoogle"
@@ -17,6 +16,16 @@
   <script>
        (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
+</div>
+
+<script>
+if (window.location.pathname !== "/") {
+    document.getElementById("adsenseBox").style.display = "block";
+}
+</script>
+<!-- Google AdSense -->
+<div class="google-ad-container">
+  
 </div>
 <br>
 <iframe 
