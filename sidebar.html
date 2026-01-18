@@ -1,71 +1,59 @@
-<div style="width:300px;background:red;text-align:center;padding:2px 0;border-bottom:1px solid #fff">
+<!-- Advertisement Label -->
+<div style="width:300px;background:red;text-align:center;padding:2px 0;border-bottom:1px solid #fff;margin:auto">
   <span style="font-size:18px;color:#fff">Advertisement</span>
-</div><script>
+</div>
+
+<!-- A-ADS (always visible – first) -->
+<iframe data-aa="2415132"
+  src="//ad.a-ads.com/2415132/?size=300x250"
+  style="border:0;width:300px;height:250px;display:block;margin:10px auto">
+</iframe>
+
+<!-- DIV A : ONLY HOME -->
+<div id="adHome" style="display:none">
+
+  <!-- A-ADS Adaptive (home extra ad) -->
+  <iframe data-aa="2424570"
+    src="//acceptable.a-ads.com/2424570/?size=Adaptive"
+    style="border:0;padding:0;width:70%;height:auto;overflow:hidden;display:block;margin:auto">
+  </iframe>
+
+</div>
+
+<!-- DIV B : NOT HOME -->
+<div id="adInner" style="display:none">
+
+  <!-- Google AdSense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
+    crossorigin="anonymous"></script>
+
+  <ins class="adsbygoogle"
+    style="display:inline-block;width:300px;height:250px"
+    data-ad-client="ca-pub-4305348743992957"
+    data-ad-slot="3614194127"></ins>
+
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+</div>
+
+<script>
 (function(){
 
   var isHome =
     location.pathname === "/" ||
     location.pathname.endsWith("index.html");
 
-  var hasQuery = location.search.length > 0;
-
-  /* ========= A-ADS HELPERS ========= */
-
-  function aads300(){
-    document.write(
-      '<iframe data-aa="2415132" ' +
-      'src="//ad.a-ads.com/2415132/?size=300x250" ' +
-      'style="border:0;width:300px;height:250px;display:block;margin:auto"></iframe>'
-    );
-  }
-
-  function aadsAdaptive(){
-    document.write(
-      '<iframe data-aa="2424570" ' +
-      'src="//acceptable.a-ads.com/2424570/?size=Adaptive" ' +
-      'style="border:0;padding:0;width:70%;height:auto;overflow:hidden;display:block;margin:auto"></iframe>'
-    );
-  }
-
-  /* ========= PAGE LOGIC ========= */
-
-  // HOME → both A-ADS
   if (isHome) {
-    aads300();
-    document.write("<br>");
-    aadsAdaptive();
-  }
-  // ANY OTHER PAGE → only 300x250
-  else {
-    aads300();
-  }
-
-  /* ========= GOOGLE ADS ========= */
-
-  // Google ONLY on clean inner pages
-  if (!isHome && !hasQuery) {
-
-    document.write(
-      '<script async ' +
-      'src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957" ' +
-      'crossorigin="anonymous"><\/script>'
-    );
-
-    document.write(
-      '<ins class="adsbygoogle" ' +
-      'style="display:inline-block;width:300px;height:250px" ' +
-      'data-ad-client="ca-pub-4305348743992957" ' +
-      'data-ad-slot="3614194127"></ins>'
-    );
-
-    document.write(
-      '<script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>'
-    );
+    document.getElementById("adHome").style.display = "block";
+  } else {
+    document.getElementById("adInner").style.display = "block";
   }
 
 })();
 </script>
-
 
 <br>
 <iframe 
@@ -78,4 +66,4 @@
   referrerpolicy="no-referrer-when-downgrade">
 </iframe>
 <br>
-
+isme kya ho raha hai google ads ka
