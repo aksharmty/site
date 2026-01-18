@@ -1,70 +1,71 @@
 <div style="width:300px;background:red;text-align:center;padding:2px 0;border-bottom:1px solid #fff">
   <span style="font-size:18px;color:#fff">Advertisement</span>
-</div>
-
-<!-- A-ADS container -->
-<div id="aadsBox"></div>
-
-<!-- Google Ads container -->
-<div id="googleAdBox"></div>
-
-<script>
+</div><script>
 (function(){
 
-  const isHome   = location.pathname === "/";
-  const hasQuery = location.search.length > 0;
+  var isHome =
+    location.pathname === "/" ||
+    location.pathname.endsWith("index.html");
 
-  const aadsBox = document.getElementById("aadsBox");
-  const googleBox = document.getElementById("googleAdBox");
+  var hasQuery = location.search.length > 0;
 
-  /* =====================
-     A-ADS LOGIC
-  ====================== */
+  /* ========= A-ADS HELPERS ========= */
 
-  // Home page → 2 A-ADS
+  function aads300(){
+    document.write(
+      '<iframe data-aa="2415132" ' +
+      'src="//ad.a-ads.com/2415132/?size=300x250" ' +
+      'style="border:0;width:300px;height:250px;display:block;margin:auto"></iframe>'
+    );
+  }
+
+  function aadsAdaptive(){
+    document.write(
+      '<iframe data-aa="2424570" ' +
+      'src="//acceptable.a-ads.com/2424570/?size=Adaptive" ' +
+      'style="border:0;padding:0;width:70%;height:auto;overflow:hidden;display:block;margin:auto"></iframe>'
+    );
+  }
+
+  /* ========= PAGE LOGIC ========= */
+
+  // HOME → both A-ADS
   if (isHome) {
-    aadsBox.innerHTML = `
-      <iframe data-aa="2415132" src="//ad.a-ads.com/2415132/?size=300x250"
-        style="border:0;width:300px;height:250px;display:block;margin:auto"></iframe>
-
-      <br>
-
-        <iframe data-aa="2424570" src="//acceptable.a-ads.com/2424570/?size=Adaptive"
-          style="border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto"></iframe>
-    `;
+    aads300();
+    document.write("<br>");
+    aadsAdaptive();
   }
-  // Any inner page → 1 A-ADS
+  // ANY OTHER PAGE → only 300x250
   else {
-    aadsBox.innerHTML = `
-      <iframe data-aa="2415132" src="//ad.a-ads.com/2415132/?size=300x250"
-        style="border:0;width:300px;height:250px;display:block;margin:auto"></iframe>
-    `;
+    aads300();
   }
 
-  /* =====================
-     GOOGLE ADS LOGIC
-  ====================== */
+  /* ========= GOOGLE ADS ========= */
 
-  // Google ads ONLY on clean inner pages
+  // Google ONLY on clean inner pages
   if (!isHome && !hasQuery) {
 
-    googleBox.innerHTML = `
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
-        crossorigin="anonymous"></script>
+    document.write(
+      '<script async ' +
+      'src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957" ' +
+      'crossorigin="anonymous"><\/script>'
+    );
 
-      <ins class="adsbygoogle"
-        style="display:inline-block;width:300px;height:250px"
-        data-ad-client="ca-pub-4305348743992957"
-        data-ad-slot="3614194127"></ins>
+    document.write(
+      '<ins class="adsbygoogle" ' +
+      'style="display:inline-block;width:300px;height:250px" ' +
+      'data-ad-client="ca-pub-4305348743992957" ' +
+      'data-ad-slot="3614194127"></ins>'
+    );
 
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      <\/script>
-    `;
+    document.write(
+      '<script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>'
+    );
   }
 
 })();
 </script>
+
 
 <br>
 <iframe 
