@@ -3,41 +3,22 @@
   <span style="font-size:18px;color:#fff">Advertisement</span>
 </div>
 
-<!-- A-ADS (always visible – first) -->
+<!-- A-ADS (always) -->
 <iframe data-aa="2415132"
   src="//ad.a-ads.com/2415132/?size=300x250"
   style="border:0;width:300px;height:250px;display:block;margin:10px auto">
 </iframe>
 
-<!-- DIV A : ONLY HOME -->
+<!-- HOME ONLY -->
 <div id="adHome" style="display:none">
-
-  <!-- A-ADS Adaptive (home extra ad) -->
   <iframe data-aa="2424570"
     src="//acceptable.a-ads.com/2424570/?size=Adaptive"
     style="border:0;padding:0;width:70%;height:auto;overflow:hidden;display:block;margin:auto">
   </iframe>
-
 </div>
 
-<!-- DIV B : NOT HOME -->
-<div id="adInner" style="display:none">
-
-  <!-- Google AdSense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
-    crossorigin="anonymous"></script>
-
-  <ins class="adsbygoogle"
-    style="display:inline-block;width:300px;height:250px"
-    data-ad-client="ca-pub-4305348743992957"
-    data-ad-slot="3614194127"></ins>
-
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-
-</div>
+<!-- INNER PAGE ONLY -->
+<div id="adInner" style="display:none"></div>
 
 <script>
 (function(){
@@ -46,14 +27,45 @@
     location.pathname === "/" ||
     location.pathname.endsWith("index.html");
 
+  var hasQuery = location.search.length > 0;
+
   if (isHome) {
     document.getElementById("adHome").style.display = "block";
-  } else {
-    document.getElementById("adInner").style.display = "block";
+    return;
+  }
+
+  // clean inner pages only
+  if (!hasQuery) {
+
+    var box = document.getElementById("adInner");
+    box.style.display = "block";
+
+    // create adsense script
+    var s = document.createElement("script");
+    s.async = true;
+    s.src =
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957";
+    s.crossOrigin = "anonymous";
+    document.head.appendChild(s);
+
+    // ad container
+    var ins = document.createElement("ins");
+    ins.className = "adsbygoogle";
+    ins.style.display = "inline-block";
+    ins.style.width = "300px";
+    ins.style.height = "250px";
+    ins.setAttribute("data-ad-client", "ca-pub-4305348743992957");
+    ins.setAttribute("data-ad-slot", "3614194127");
+    box.appendChild(ins);
+
+    s.onload = function () {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    };
   }
 
 })();
 </script>
+
 
 <br>
 <iframe 
