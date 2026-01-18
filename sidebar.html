@@ -1,32 +1,71 @@
- <div style="width: 300px; background-color: red; text-align: center; padding: 2px 0; border-bottom: 1px solid white;">
-  <span style="font-size: 18px; color: white;">Advertisement</span>
-</div>
-<div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
-          <iframe data-aa='2415132' src='//ad.a-ads.com/2415132/?size=300x250'
-                            style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
-</div>
-<div id="adsenseBox" style="display:none;">
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
-     crossorigin="anonymous"></script>
-  <!-- 300x250 Ad -->
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:300px;height:250px"
-       data-ad-client="ca-pub-4305348743992957"
-     data-ad-slot="3614194127"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+<div style="width:300px;background:red;text-align:center;padding:2px 0;border-bottom:1px solid #fff">
+  <span style="font-size:18px;color:#fff">Advertisement</span>
 </div>
 
+<!-- A-ADS container -->
+<div id="aadsBox"></div>
+
+<!-- Google Ads container -->
+<div id="googleAdBox"></div>
+
 <script>
-if (window.location.pathname !== "/") {
-    document.getElementById("adsenseBox").style.display = "block";
-}
+(function(){
+
+  const isHome   = location.pathname === "/";
+  const hasQuery = location.search.length > 0;
+
+  const aadsBox = document.getElementById("aadsBox");
+  const googleBox = document.getElementById("googleAdBox");
+
+  /* =====================
+     A-ADS LOGIC
+  ====================== */
+
+  // Home page → 2 A-ADS
+  if (isHome) {
+    aadsBox.innerHTML = `
+      <iframe data-aa="2415132" src="//ad.a-ads.com/2415132/?size=300x250"
+        style="border:0;width:300px;height:250px;display:block;margin:auto"></iframe>
+
+      <br>
+
+        <iframe data-aa="2424570" src="//acceptable.a-ads.com/2424570/?size=Adaptive"
+          style="border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto"></iframe>
+    `;
+  }
+  // Any inner page → 1 A-ADS
+  else {
+    aadsBox.innerHTML = `
+      <iframe data-aa="2415132" src="//ad.a-ads.com/2415132/?size=300x250"
+        style="border:0;width:300px;height:250px;display:block;margin:auto"></iframe>
+    `;
+  }
+
+  /* =====================
+     GOOGLE ADS LOGIC
+  ====================== */
+
+  // Google ads ONLY on clean inner pages
+  if (!isHome && !hasQuery) {
+
+    googleBox.innerHTML = `
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957"
+        crossorigin="anonymous"></script>
+
+      <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-4305348743992957"
+        data-ad-slot="3614194127"></ins>
+
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      <\/script>
+    `;
+  }
+
+})();
 </script>
-<!-- Google AdSense -->
-<div class="google-ad-container">
-  
-</div>
+
 <br>
 <iframe 
   src="https://aksharhanumandham.in/banner.html" 
