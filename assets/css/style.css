@@ -41,9 +41,11 @@ a:hover, a:focus, a:active {
     border: 1px solid green;
     background-color: lightgray;
     z-index: 1000;
-    left:0;
-    padding: 1px 10px 1px 10px;
+    left: 0;
+    padding: 1px 10px;
+    box-sizing: border-box;
 }
+
 .topdiv2 {
     position: fixed;
     top: 1px;
@@ -53,7 +55,19 @@ a:hover, a:focus, a:active {
     background-color: lightgray;
     z-index: 1000;
     right: 0;
-    padding: 1px 10px 1px 10px;
+    padding: 1px 10px;
+    box-sizing: border-box;
+}
+
+/*  Mobile view */
+@media (max-width: 768px) {
+    .topdiv1 {
+        width: 100%;
+    }
+
+    .topdiv2 {
+        display: none;
+    }
 }
 
 /* =============================================================================
@@ -1084,4 +1098,5 @@ form .alert {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
 }
+
 
