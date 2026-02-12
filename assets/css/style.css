@@ -33,7 +33,28 @@ a:hover, a:focus, a:active {
   }
 }
 
-
+.topdiv1 {
+    position: fixed;
+    top: 1px;
+    width: 50%;
+    height: 65px;
+    border: 1px solid green;
+    background-color: lightgray;
+    z-index: 1000;
+    left:0;
+    padding: 1px 10px 1px 10px;
+}
+.topdiv2 {
+    position: fixed;
+    top: 1px;
+    width: 50%;
+    height: 65px;
+    border: 1px solid green;
+    background-color: lightgray;
+    z-index: 1000;
+    right: 0;
+    padding: 1px 10px 1px 10px;
+}
 
 /* =============================================================================
   Layout
@@ -1063,3 +1084,4 @@ form .alert {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
 }
+
