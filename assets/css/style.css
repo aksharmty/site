@@ -76,7 +76,7 @@ a:hover, a:focus, a:active {
 /* Header 
 ================================= */
 .navbar-static-top {
-  margin: 0;
+  margin: 70;
   border: 0;
   color: #fff;
 }
@@ -1098,5 +1098,6 @@ form .alert {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
 }
+
 
 
