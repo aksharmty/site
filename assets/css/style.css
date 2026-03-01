@@ -38,11 +38,11 @@ a:hover, a:focus, a:active {
     top: 1px;
     width: 50%;
     height: 65px;
-    border: 1px solid green;
+    border: 2px solid green;
     background-color: lightgray;
     z-index: 9999;
     left: 0;
-    padding: 1px 10px;
+    padding: 2px 10px;
     box-sizing: border-box;
 }
 
@@ -51,11 +51,11 @@ a:hover, a:focus, a:active {
     top: 1px;
     width: 50%;
     height: 65px;
-    border: 1px solid green;
+    border: 2px solid green;
     background-color: lightgray;
     z-index: 9999;
     right: 0;
-    padding: 1px 10px;
+    padding: 2px 10px;
     box-sizing: border-box;
 }
 
@@ -1098,6 +1098,7 @@ form .alert {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
 }
+
 
 
 
