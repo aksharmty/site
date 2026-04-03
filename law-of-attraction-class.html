@@ -17,6 +17,11 @@ ul{padding-left:20px}
 .highlight{color:#e63946;font-weight:bold}
 .center{text-align:center}
 .badge{background:#000;color:#fff;display:inline-block;padding:6px 12px;border-radius:20px;font-size:12px;margin-bottom:10px}
+
+/* POPUP */
+.popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center}
+.popup-content{background:#fff;padding:25px;border-radius:10px;max-width:400px;text-align:left}
+.close{float:right;cursor:pointer;font-size:20px}
 </style>
 
 
@@ -104,7 +109,7 @@ ul{padding-left:20px}
 👉 इसीलिए 90% लोग LOA use करके भी fail होते हैं
 </p>
 
-<a class="btn btn2" href="https://wa.me/919213816442?text=Hello%2C%20mujhe%20class%20join%20karni%20hai" style="background:#ff4d6d;">
+<a class="btn" href="https://wa.me/919213816442?text=Hello%2C%20mujhe%20class%20join%20karni%20hai" style="background:#25D366;">
 👉 अभी WhatsApp करें (Seat Book करें)
 </a>
 
@@ -145,7 +150,7 @@ One-to-One • Video Call / In-Person • Direct Guidance<br>⏱️ Duration: 3 
 <li>One-to-One personal session</li>
 <li>Video Call या In-Person option</li>
 <li>No theory — only practical system</li>
-<li>Direct guidance until clarity</li>
+<!-- li>Direct guidance until clarity</li -->
 </ul>
 </div>
 
@@ -163,7 +168,7 @@ One-to-One • Video Call / In-Person • Direct Guidance<br>⏱️ Duration: 3 
 <h1 class="highlight">₹149</h1>
 <p>Limited Time Offer • 3 Hours Intensive Class</p>
 
-<a class="btn" href="https://adquash.com/law-of-attraction-class.html">👉 Seat Book करें</a>
+<a class="btn" href="#" onclick="openPopup()">👉 Seat Book करें</a>
 <a class="btn" href="https://wa.me/919213816442?text=Hello%2C%20details%20chahiye">👉 WhatsApp पर बात करें</a>
 </div>
 
@@ -193,6 +198,34 @@ One-to-One • Video Call / In-Person • Direct Guidance<br>⏱️ Duration: 3 
 </div>
 
 </div>
+<!-- POPUP -->
+<div id="paymentPopup" class="popup">
+<div class="popup-content">
+<span class="close" onclick="closePopup()">&times;</span>
+<h3>Payment Details</h3>
 
+<p><b>SBI BANK DETAILS:</b></p>
+<p>
+Account Name: RAJ KUMAR<br>
+Saving A/c No: 34047891546<br>
+Bank Name: SBI BANK<br>
+Branch: C-BLOCK, JANAK PURI<br>
+IFSC Code: SBIN0050258
+</p>
+
+<p class="highlight">Payment ke baad screenshot WhatsApp par bheje</p>
+
+<a class="btn" href="https://wa.me/919213816442?text=Hello%2C%20maine%20payment%20kar%20diya%20hai">📲 Screenshot भेजें</a>
+</div>
+</div>
+
+<script>
+function openPopup(){
+ document.getElementById('paymentPopup').style.display='flex';
+}
+function closePopup(){
+ document.getElementById('paymentPopup').style.display='none';
+}
+</script>
 </body>
 </html>
