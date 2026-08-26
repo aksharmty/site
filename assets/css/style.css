@@ -20,7 +20,10 @@ a {
 a:hover, a:focus, a:active {
   color: inherit;
 }
-
+p {
+    font-size: 18px;
+    line-height: 1.7;
+}
 
 .example {
   font-size:20px;
