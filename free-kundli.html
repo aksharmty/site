@@ -1,186 +1,701 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html class="no-js" lang="hi">
+
 <head>
-<meta charset="UTF-8">
-<title>Free Kundli Generator</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://aksharmty.adquash.com/logo-aksharmty.png" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- PDF library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>Free Kundli Online | Janam Kundli & Navamsha Chart</title>
 
-<style>
-body{font-family:Arial;background:#f5f5f5;margin:0;padding:0}
-.container{max-width:900px;margin:auto;background:#fff;padding:20px}
-h1,h2,h3{color:#8b0000}
-label{display:block;margin-top:10px}
-input,button{width:100%;padding:8px;margin-top:5px}
-button{background:#8b0000;color:#fff;border:none;cursor:pointer}
-ul{padding-left:20px}
-footer{margin-top:30px;font-size:13px;color:#555;border-top:1px solid #ddd;padding-top:10px}
-.suggest{background:#eee;padding:5px;cursor:pointer}
-.north-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:10px 0}
-.nbox{border:1px solid #000;min-height:70px;font-size:12px;padding:4px;text-align:center}
-@media(max-width:600px){.north-grid{grid-template-columns:repeat(3,1fr)}}
-</style>
+    <meta name="description"
+          content="Free Kundli Online बनाएं। जन्म तारीख, समय और जन्म स्थान की जानकारी देकर Janam Kundli, Lagna, ग्रह स्थिति और Navamsha Chart देखें।">
+
+    <meta name="keywords"
+          content="Free Kundli, Free Janam Kundli, Online Kundli, Janam Kundli, Kundli Chart, Navamsha Chart, D9 Chart, Vedic Kundli, जन्म कुंडली">
+
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Akshar Mantra Tantra Yantra">
+
+    <link rel="canonical"
+          href="https://aksharmty.adquash.com/free-kundli.html">
+
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="F1178E06F62827B2DD8EF2FE31CC0EBF">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://aksharmty.adquash.com/assets/css/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="https://aksharmty.adquash.com/assets/css/style.css">
+
+    <!-- w3.js -->
+    <script src="https://aksharmty.adquash.com/w3.js"></script>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Kundli Online | Janam Kundli & Navamsha Chart">
+    <meta property="og:description"
+          content="Free Online Kundli बनाएं और Lagna, ग्रह स्थिति तथा Navamsha Chart देखें।">
+    <meta property="og:url" content="https://aksharmty.adquash.com/free-kundli.html">
+    <meta property="og:image" content="https://aksharmty.adquash.com/logo-akshmty.png">
+    <meta property="og:site_name" content="Akshar Mantra Tantra Yantra">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Kundli Online | Janam Kundli & Navamsha Chart">
+    <meta name="twitter:description"
+          content="जन्म विवरण भरकर Free Janam Kundli और Navamsha Chart देखें।">
+    <meta name="twitter:image" content="https://aksharmty.adquash.com/logo-akshmty.png">
+
+    <!-- JSON-LD : WebPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Free Kundli Online | Janam Kundli & Navamsha Chart",
+      "url": "https://aksharmty.adquash.com/free-kundli.html",
+      "description": "Free Online Janam Kundli, Lagna, ग्रह स्थिति और Navamsha Chart देखने का page।",
+      "inLanguage": "hi-IN",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Akshar Mantra Tantra Yantra",
+        "url": "https://aksharmty.adquash.com/"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD : Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://aksharmty.adquash.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Free Kundli",
+          "item": "https://aksharmty.adquash.com/free-kundli.html"
+        }
+      ]
+    }
+    </script>
+
 </head>
 
 <body>
-<div class="container">
-<h1>Free Kundli Generator</h1>
 
-<label>जन्म तिथि (Birth Date)</label>
-<input type="date" id="dob">
+<!-- Menu -->
+<div w3-include-html="https://aksharmty.adquash.com/menu.html"></div>
 
-<label>जन्म समय (Birth Time)</label>
-<input type="time" id="tob">
+<!-- =========================================================
+     MAIN CONTENT
+========================================================== -->
 
-<label>जन्म स्थान (City)</label>
-<input type="text" id="city" placeholder="Jaipur, India" oninput="citySuggest()">
-<div id="suggestions"></div>
+<div class="section-home our-causes">
 
-<button onclick="generateKundli()">कुंडली बनाएं</button>
+    <div class="container">
 
-<div id="output"></div>
+        <h1 class="title-style-1">
+            Free Kundli Online
+            <span class="title-under"></span>
+        </h1>
 
-<footer>
-<b>Akshar Mantra Tantra Yantra</b><br>
-यह रिपोर्ट केवल शैक्षणिक एवं सामान्य मार्गदर्शन हेतु है।
-</footer>
+        <div class="row">
+
+            <!-- =================================================
+                 MAIN CONTENT : col-md-9
+            ================================================== -->
+
+            <div class="col-md-9 col-sm-6">
+
+                <div class="cause">
+
+                    <div class="cause-details">
+
+                        <h2>अपनी Janam Kundli बनाएं</h2>
+
+                        <p>
+                            अपनी <b>जन्म तारीख, जन्म समय और जन्म स्थान</b> भरकर
+                            Online Free Kundli तैयार करें। इस page पर
+                            <b>Lagna, ग्रहों की स्थिति और Navamsha (D9)</b>
+                            की जानकारी दिखाई जाएगी।
+                        </p>
+
+                        <p>
+                            Kundli calculation के लिए <b>Navamsha API</b> का उपयोग किया जा रहा है।
+                            API में Lahiri Ayanamsa का default उपयोग होता है।
+                        </p>
+
+                        <hr style="border-top:5px solid red;">
+
+                        <h2>जन्म विवरण</h2>
+
+                        <form id="kundliForm">
+
+                            <div class="form-group">
+                                <label for="name"><b>नाम</b></label>
+                                <input type="text" id="name" name="name"
+                                       class="form-control"
+                                       placeholder="अपना नाम">
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dob"><b>जन्म तारीख</b></label>
+                                        <input type="date" id="dob" name="dob"
+                                               class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tob"><b>जन्म समय</b></label>
+                                        <input type="time" id="tob" name="tob"
+                                               class="form-control" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="place"><b>जन्म स्थान</b></label>
+                                <input type="text" id="place" name="place"
+                                       class="form-control"
+                                       placeholder="जैसे Delhi, Jaipur, Mumbai" required>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="latitude"><b>Latitude</b></label>
+                                        <input type="number" id="latitude" name="latitude"
+                                               class="form-control"
+                                               step="any"
+                                               placeholder="जैसे 28.6139" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="longitude"><b>Longitude</b></label>
+                                        <input type="number" id="longitude" name="longitude"
+                                               class="form-control"
+                                               step="any"
+                                               placeholder="जैसे 77.2090" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="timezone"><b>Timezone</b></label>
+                                <input type="number" id="timezone" name="timezone"
+                                       class="form-control"
+                                       value="5.5" step="0.5" required>
+                                <small>भारत के लिए सामान्यतः +5.5</small>
+                            </div>
+
+                            <div class="btn-holder text-center">
+
+                                <button type="submit" id="generateBtn"
+                                        class="btn btn-primary">
+                                    Generate Free Kundli
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                        <div id="statusBox" style="display:none; margin-top:20px;"></div>
+
+                        <div id="resultBox" style="display:none; margin-top:30px;">
+
+                            <hr style="border-top:5px solid red;">
+
+                            <h2 id="resultTitle">Kundli Result</h2>
+
+                            <div id="basicResult"></div>
+
+                            <div id="d9Result" style="margin-top:30px;"></div>
+
+                            <div id="rawResult" style="margin-top:30px;"></div>
+
+                        </div>
+
+                        <hr style="border-top:5px solid red;">
+
+                        <h2>Free Kundli में क्या देखें?</h2>
+
+                        <ul>
+                            <li><b>Lagna / Ascendant</b> — जन्म समय और स्थान के आधार पर Lagna की जानकारी।</li>
+                            <li><b>Planetary Positions</b> — विभिन्न ग्रहों की राशि और degree से जुड़ी जानकारी।</li>
+                            <li><b>Nakshatra</b> — उपलब्ध होने पर Nakshatra और संबंधित data।</li>
+                            <li><b>Navamsha / D9</b> — Navamsha divisional chart की जानकारी।</li>
+                        </ul>
+
+                        <h2>जन्म समय क्यों महत्वपूर्ण है?</h2>
+
+                        <p>
+                            Kundli में जन्म समय महत्वपूर्ण होता है, विशेषकर Lagna और
+                            house placement के लिए। इसलिए संभव हो तो वही समय भरें जो
+                            विश्वसनीय birth record से उपलब्ध हो।
+                        </p>
+
+                        <h2>महत्वपूर्ण Disclaimer</h2>
+
+                        <p>
+                            यह Free Kundli tool chart calculation और educational /
+                            spiritual reference के उद्देश्य से है। इसमें दिखाई गई
+                            planetary information को किसी निश्चित भविष्यवाणी या
+                            निश्चित परिणाम की guarantee के रूप में नहीं समझना चाहिए।
+                        </p>
+
+                        <div class="btn-holder text-center">
+
+                            <br>
+
+                            <a href="tel:+919213816442"
+                               class="btn btn-primary">
+                                📞 Spiritual Consultation — 9213816442
+                            </a>
+
+                            &nbsp;&nbsp;
+
+                            <a href="contact.html"
+                               class="btn btn-primary">
+                                Contact Details
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =================================================
+                 SIDEBAR : col-md-3
+            ================================================== -->
+
+            <div class="col-md-3 col-sm-6">
+
+                <div w3-include-html="https://aksharmty.adquash.com/sidebar.html"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-<script>
-let cityCache={},selectedCity=null;
+<!-- =========================================================
+     FOOTER
+========================================================== -->
 
-/* ---------- CITY AUTOCOMPLETE ---------- */
-function citySuggest(){
-  let q=document.getElementById("city").value;
-  if(q.length<3) return;
-  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${q}`)
-  .then(r=>r.json())
-  .then(data=>{
-    let s=document.getElementById("suggestions");
-    s.innerHTML="";
-    data.slice(0,5).forEach(c=>{
-      let d=document.createElement("div");
-      d.className="suggest";
-      d.innerText=c.display_name;
-      d.onclick=()=>{
-        document.getElementById("city").value=c.display_name;
-        selectedCity={lat:c.lat,lon:c.lon};
-        s.innerHTML="";
-      };
-      s.appendChild(d);
-    });
-  });
-}
+<footer class="main-footer">
 
-/* ---------- KUNDLI GENERATION ---------- */
-function generateKundli(){
-  if(!selectedCity){alert("Please select city from suggestion"); return;}
-  let dob=document.getElementById("dob").value;
-  let tob=document.getElementById("tob").value;
-  if(!dob || !tob){alert("Enter date & time"); return;}
+    <div w3-include-html="https://aksharmty.adquash.com/footer.html"></div>
 
-  let payload={
-    dob:dob,
-    tob:tob,
-    lat:selectedCity.lat,
-    lon:selectedCity.lon,
-    tz:5.5
-  };
+    <!-- Scripts -->
 
-  document.getElementById("output").innerHTML="Generating kundli...";
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-  /* ---------- ASTROLOGY API ---------- */
-  fetch("https://json.freeastrologyapi.com/api/v1/astro_details",{
-    method:"POST",
-    headers:{"Content-Type":"application/json","x-api-key":"J8H3D5VCGmnoeQ5J07Y27jlSuXTF4XS2HAFlDCUc"},
-    body:JSON.stringify({
-      day:+dob.split("-")[2],
-      month:+dob.split("-")[1],
-      year:+dob.split("-")[0],
-      hour:+tob.split(":")[0],
-      min:+tob.split(":")[1],
-      lat:+selectedCity.lat,
-      lon:+selectedCity.lon,
-      tzone:5.5
-    })
-  })
-  .then(r=>r.json())
-  .then(d=>renderResult(d))
-  .catch(()=>alert("API error"));
-}
+    <script>
+        window.jQuery || document.write(
+            '<script src="https://aksharmty.adquash.com/js/jquery-1.11.1.min.js"><\/script>'
+        )
+    </script>
 
-/* ---------- RULE-BASED PREDICTIONS & YOG ENGINE ---------- */
-const signLords={Aries:"Mars",Taurus:"Venus",Gemini:"Mercury",Cancer:"Moon",
-Leo:"Sun",Virgo:"Mercury",Libra:"Venus",Scorpio:"Mars",
-Sagittarius:"Jupiter",Capricorn:"Saturn",Aquarius:"Saturn",Pisces:"Jupiter"};
+    <script src="https://aksharmty.adquash.com/assets/js/bootstrap.min.js"></script>
 
-function generatePredictions(d){
- let r={career:[],finance:[],marriage:[],health:[]};
- let lagna=d.ascendant.sign;
- let dasha=d.vimshottari_dasha[0].planet;
+    <script src="https://aksharmty.adquash.com/assets/js/owl.carousel.min.js"></script>
 
- if(dasha===signLords[lagna]) r.career.push("वर्तमान महादशा आत्म-विकास व करियर उन्नति में सहायक।");
- if(d.houses[1].planets.length||d.houses[10].planets.length) r.finance.push("धन योग सक्रिय, आय में सुधार संभव।");
- if(d.houses[6].planets.includes("Venus")||d.houses[6].planets.includes("Jupiter"))
-   r.marriage.push("विवाह में सहयोग और स्थिरता।");
- else r.marriage.push("विवाह में धैर्य आवश्यक।");
- if(dasha==="Saturn"||dasha==="Mars") r.health.push("स्वास्थ्य में अनुशासन रखें।");
- else r.health.push("सामान्य स्वास्थ्य अनुकूल।");
+    <script src="https://aksharmty.adquash.com/assets/js/main.js"></script>
 
- return r;
-}
+    <script>
+        w3.includeHTML();
 
-function detectYogs(d){
-  let yogs=[];
-  const h=d.houses;
-  // Gajkesari Yog
-  if(h[0].planets.includes("Moon") && (h[0].planets.includes("Jupiter") || h[3].planets.includes("Jupiter") || h[6].planets.includes("Jupiter") || h[9].planets.includes("Jupiter")))
-    yogs.push("गजकेसरी योग – बुद्धि, सम्मान व समृद्धि के संकेत");
-  // Budhaditya Yog
-  Object.values(h).forEach(x=>{if(x.planets.includes("Sun") && x.planets.includes("Mercury")) yogs.push("बुधादित्य योग – बुद्धि, वाणी व प्रशासनिक क्षमता");});
-  // Dhan Yog
-  if(h[1].planets.length || h[10].planets.length) yogs.push("धन योग – आय व संचय में वृद्धि के योग");
-  // Raj Yog
-  if(h[0].planets.length && h[4].planets.length) yogs.push("राज योग – पद, प्रतिष्ठा व नेतृत्व के संकेत");
-  if(!yogs.length) yogs.push("प्रमुख योग स्पष्ट नहीं, फल दशा पर निर्भर");
-  return yogs;
-}
+        /* =========================================================
+           NAVAMSHA API - GitHub Pages version
+           IMPORTANT: API key is visible in browser/client code.
+           For early testing this is acceptable only if you understand
+           that the key can be copied and replaced/revoked later.
+        ========================================================== */
+        const NAVAMSHA_API_KEY = 'YOUR_NAVAMSHA_API_KEY';
+        const NAVAMSHA_BASE = 'https://api.navamsha.in';
 
-/* ---------- RENDER & PDF ---------- */
-function renderResult(d){
-  const p=generatePredictions(d);
-  const yogs=detectYogs(d);
-  let html=`<h2>Ascendant: ${d.ascendant.sign}</h2>`;
-  html+=`<h3>Mahadasha: ${d.vimshottari_dasha[0].planet}</h3>`;
-  html+=`<h3>Career</h3><ul>${p.career.map(x=>`<li>${x}</li>`).join("")}</ul>`;
-  html+=`<h3>Finance</h3><ul>${p.finance.map(x=>`<li>${x}</li>`).join("")}</ul>`;
-  html+=`<h3>Marriage</h3><ul>${p.marriage.map(x=>`<li>${x}</li>`).join("")}</ul>`;
-  html+=`<h3>Health</h3><ul>${p.health.map(x=>`<li>${x}</li>`).join("")}</ul>`;
-  html+=`<h3>Special Yog</h3><ul>${yogs.map(x=>`<li>${x}</li>`).join("")}</ul>`;
-  html+=`<button onclick='downloadPDF()'>Download PDF</button>`;
-  document.getElementById("output").innerHTML=html;
-  window._pdfData={d,p,yogs};
-}
+        const form = document.getElementById('kundliForm');
+        const statusBox = document.getElementById('statusBox');
+        const resultBox = document.getElementById('resultBox');
+        const basicResult = document.getElementById('basicResult');
+        const d9Result = document.getElementById('d9Result');
+        const rawResult = document.getElementById('rawResult');
+        const generateBtn = document.getElementById('generateBtn');
 
-function downloadPDF(){
-  const { jsPDF }=window.jspdf;
-  let pdf=new jsPDF(),y=10;
-  pdf.setFontSize(14); pdf.text("Free Kundli Report",10,y); y+=10;
-  pdf.setFontSize(10);
-  pdf.text("Ascendant: "+_pdfData.d.ascendant.sign,10,y); y+=7;
-  pdf.text("Mahadasha: "+_pdfData.d.vimshottari_dasha[0].planet,10,y); y+=10;
-  pdf.text("Predictions:",10,y); y+=7;
-  ["career","finance","marriage","health"].forEach(k=>{
-    _pdfData.p[k].forEach(t=>{pdf.text("- "+t,10,y); y+=6;});
-  });
-  y+=5; pdf.text("Special Yog:",10,y); y+=7;
-  _pdfData.yogs.forEach(t=>{pdf.text("- "+t,10,y); y+=6;});
-  y+=10; pdf.text("Akshar Mantra Tantra Yantra",10,y); y+=6;
-  pdf.text("यह रिपोर्ट केवल शैक्षणिक एवं सामान्य मार्गदर्शन हेतु है।",10,y);
-  pdf.save("kundli.pdf");
-}
-</script>
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function showStatus(message, type) {
+            statusBox.style.display = 'block';
+            statusBox.className = type === 'error'
+                ? 'alert alert-danger'
+                : 'alert alert-info';
+            statusBox.innerHTML = message;
+        }
+
+        function isObject(value) {
+            return value !== null && typeof value === 'object';
+        }
+
+        function formatValue(value) {
+            if (value === null || value === undefined || value === '') {
+                return '-';
+            }
+
+            if (typeof value === 'object') {
+                return escapeHtml(JSON.stringify(value));
+            }
+
+            return escapeHtml(value);
+        }
+
+        function renderObjectTable(obj) {
+            if (!isObject(obj)) {
+                return '<p>' + formatValue(obj) + '</p>';
+            }
+
+            let html = '<div class="table-responsive">';
+            html += '<table class="table table-bordered table-striped">';
+            html += '<tbody>';
+
+            Object.keys(obj).forEach(function(key) {
+                const value = obj[key];
+
+                if (isObject(value)) {
+                    html += '<tr>';
+                    html += '<th>' + escapeHtml(key) + '</th>';
+                    html += '<td>' + renderNested(value) + '</td>';
+                    html += '</tr>';
+                } else {
+                    html += '<tr>';
+                    html += '<th>' + escapeHtml(key) + '</th>';
+                    html += '<td>' + formatValue(value) + '</td>';
+                    html += '</tr>';
+                }
+            });
+
+            html += '</tbody></table></div>';
+            return html;
+        }
+
+        function renderNested(value) {
+            if (Array.isArray(value)) {
+                let html = '<div class="table-responsive">';
+                html += '<table class="table table-bordered table-striped">';
+                html += '<tbody>';
+
+                value.forEach(function(item, index) {
+                    html += '<tr>';
+                    html += '<th>' + index + '</th>';
+                    html += '<td>' + (isObject(item) ? renderObjectTable(item) : formatValue(item)) + '</td>';
+                    html += '</tr>';
+                });
+
+                html += '</tbody></table></div>';
+                return html;
+            }
+
+            return renderObjectTable(value);
+        }
+
+        function findFirst(obj, keys) {
+            if (!isObject(obj)) return null;
+
+            for (const key of keys) {
+                if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                    return obj[key];
+                }
+            }
+
+            return null;
+        }
+
+        function renderPlanets(data) {
+            const planets = findFirst(data, ['planets', 'planet_positions']);
+
+            if (!planets) {
+                return '<p>Planetary data response में उपलब्ध नहीं है।</p>';
+            }
+
+            if (!Array.isArray(planets)) {
+                return renderObjectTable(planets);
+            }
+
+            if (planets.length === 0) {
+                return '<p>Planetary data उपलब्ध नहीं है।</p>';
+            }
+
+            const keys = new Set();
+
+            planets.forEach(function(planet) {
+                if (isObject(planet)) {
+                    Object.keys(planet).forEach(function(k) {
+                        keys.add(k);
+                    });
+                }
+            });
+
+            const columns = Array.from(keys);
+
+            let html = '<div class="table-responsive">';
+            html += '<table class="table table-bordered table-striped">';
+            html += '<thead><tr>';
+
+            columns.forEach(function(key) {
+                html += '<th>' + escapeHtml(key) + '</th>';
+            });
+
+            html += '</tr></thead><tbody>';
+
+            planets.forEach(function(planet) {
+                html += '<tr>';
+
+                columns.forEach(function(key) {
+                    const value = isObject(planet) ? planet[key] : '';
+                    html += '<td>' + formatValue(value) + '</td>';
+                });
+
+                html += '</tr>';
+            });
+
+            html += '</tbody></table></div>';
+
+            return html;
+        }
+
+        function renderBasic(data, meta) {
+            let html = '';
+
+            html += '<h2>Janam Kundli</h2>';
+
+            if (meta) {
+                const ayanamsa = findFirst(meta, ['ayanamsa', 'ayanamsha']);
+                const houseSystem = findFirst(meta, ['house_system', 'houseSystem']);
+
+                if (ayanamsa || houseSystem) {
+                    html += '<p>';
+                    if (ayanamsa) {
+                        html += '<b>Ayanamsa:</b> ' + formatValue(ayanamsa) + ' &nbsp; ';
+                    }
+                    if (houseSystem) {
+                        html += '<b>House System:</b> ' + formatValue(houseSystem);
+                    }
+                    html += '</p>';
+                }
+            }
+
+            const ascendant = findFirst(data, ['ascendant', 'lagna']);
+
+            if (ascendant) {
+                html += '<h3>Lagna / Ascendant</h3>';
+                html += renderNested(ascendant);
+            }
+
+            html += '<h3>Planetary Positions</h3>';
+            html += renderPlanets(data);
+
+            const houses = findFirst(data, ['houses', 'house_positions']);
+
+            if (houses) {
+                html += '<h3>Houses</h3>';
+                html += renderNested(houses);
+            }
+
+            const nakshatra = findFirst(data, ['nakshatra', 'nakshatras']);
+
+            if (nakshatra) {
+                html += '<h3>Nakshatra</h3>';
+                html += renderNested(nakshatra);
+            }
+
+            return html;
+        }
+
+        function renderD9(d9) {
+            if (!d9) {
+                return '<h2>Navamsha / D9</h2><p>Navamsha data उपलब्ध नहीं है।</p>';
+            }
+
+            let html = '<h2>Navamsha / D9 Chart</h2>';
+
+            const data = d9.data || d9.output || d9;
+
+            html += renderNested(data);
+
+            return html;
+        }
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            resultBox.style.display = 'none';
+            basicResult.innerHTML = '';
+            d9Result.innerHTML = '';
+            rawResult.innerHTML = '';
+
+            const payload = {
+                name: document.getElementById('name').value.trim(),
+                dob: document.getElementById('dob').value,
+                tob: document.getElementById('tob').value,
+                place: document.getElementById('place').value.trim(),
+                latitude: document.getElementById('latitude').value,
+                longitude: document.getElementById('longitude').value,
+                timezone: document.getElementById('timezone').value
+            };
+
+            if (!payload.dob || !payload.tob || !payload.place ||
+                !payload.latitude || !payload.longitude || !payload.timezone) {
+                showStatus('कृपया सभी आवश्यक जन्म विवरण भरें।', 'error');
+                return;
+            }
+
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = 'Generating...';
+
+            showStatus('Kundli तैयार की जा रही है, कृपया प्रतीक्षा करें...', 'info');
+
+            try {
+                if (NAVAMSHA_API_KEY === 'vda_live_117ec54f_w47zQw_2DD0oq8rO8oUxVM85drcHbmO41-oj4TNuUk4') {
+                    throw new Error('सबसे पहले code में अपना Navamsha API Key डालें।');
+                }
+
+                /* Navamsha expects date/time plus coordinates.
+                   We send the same birth data to both D1 and D9. */
+                const birthDate = payload.dob.split('-');
+                const birthTime = payload.tob.split(':');
+
+                const apiBirth = {
+                    year: Number(birthDate[0]),
+                    month: Number(birthDate[1]),
+                    date: Number(birthDate[2]),
+                    hours: Number(birthTime[0]),
+                    minutes: Number(birthTime[1]),
+                    seconds: 0,
+                    latitude: Number(payload.latitude),
+                    longitude: Number(payload.longitude),
+                    timezone: Number(payload.timezone),
+                    settings: {
+                        observation_point: 'topocentric',
+                        ayanamsha: 'lahiri',
+                        language: 'en'
+                    }
+                };
+
+                const apiHeaders = {
+                    'X-API-Key': NAVAMSHA_API_KEY,
+                    'Content-Type': 'application/json'
+                };
+
+                /* D1 / Basic Kundli */
+                const basicResponse = await fetch(
+                    NAVAMSHA_BASE + '/api/v1/kundali/basic',
+                    {
+                        method: 'POST',
+                        headers: apiHeaders,
+                        body: JSON.stringify(apiBirth)
+                    }
+                );
+
+                const basic = await basicResponse.json();
+
+                if (!basicResponse.ok) {
+                    throw new Error(
+                        basic.detail ||
+                        basic.error ||
+                        'Basic Kundli generate नहीं हो सकी।'
+                    );
+                }
+
+                /* D9 / Navamsha */
+                const d9Response = await fetch(
+                    NAVAMSHA_BASE + '/api/v1/divisional/d9',
+                    {
+                        method: 'POST',
+                        headers: apiHeaders,
+                        body: JSON.stringify(apiBirth)
+                    }
+                );
+
+                const d9 = await d9Response.json();
+
+                if (!d9Response.ok) {
+                    throw new Error(
+                        d9.detail ||
+                        d9.error ||
+                        'Navamsha (D9) chart generate नहीं हो सकी।'
+                    );
+                }
+
+                statusBox.style.display = 'none';
+                resultBox.style.display = 'block';
+
+                const basicData = basic.data || basic.output || basic;
+                const basicMeta = basic.meta || basic.metadata || null;
+
+                const nameText = payload.name
+                    ? escapeHtml(payload.name) + ' की Kundli'
+                    : 'Kundli Result';
+
+                document.getElementById('resultTitle').innerHTML = nameText;
+
+                basicResult.innerHTML = renderBasic(basicData, basicMeta);
+
+                d9Result.innerHTML = renderD9(result.d9);
+
+                rawResult.innerHTML =
+                    '<details>' +
+                    '<summary><b>Technical API Response</b></summary>' +
+                    '<pre style="white-space:pre-wrap;word-break:break-word;">' +
+                    escapeHtml(JSON.stringify({ basic: basic, d9: d9 }, null, 2)) +
+                    '</pre>' +
+                    '</details>';
+
+                resultBox.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+            } catch (error) {
+                showStatus(
+                    'Error: ' + escapeHtml(error.message),
+                    'error'
+                );
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = 'Generate Free Kundli';
+            }
+        });
+    </script>
+
+</footer>
 </body>
 </html>
