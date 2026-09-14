@@ -167,11 +167,16 @@
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="position:relative;">
                                 <label for="place"><b>जन्म स्थान</b></label>
                                 <input type="text" id="place" name="place"
                                        class="form-control"
-                                       placeholder="जैसे Delhi, Jaipur, Mumbai" required>
+                                       placeholder="जन्म स्थान लिखना शुरू करें..."
+                                       autocomplete="off" required>
+                                <div id="placeSuggestions" class="list-group"
+                                     style="position:absolute; left:0; right:0; z-index:1000; display:none;">
+                                </div>
+                                <small id="placeStatus" style="display:block; margin-top:5px;"></small>
                             </div>
 
                             <div class="row">
@@ -344,6 +349,135 @@
         const d9Result = document.getElementById('d9Result');
         const rawResult = document.getElementById('rawResult');
         const generateBtn = document.getElementById('generateBtn');
+
+        const placeInput = document.getElementById('place');
+        const placeSuggestions = document.getElementById('placeSuggestions');
+        const placeStatus = document.getElementById('placeStatus');
+        const latitudeInput = document.getElementById('latitude');
+        const longitudeInput = document.getElementById('longitude');
+
+        let placeTimer = null;
+        let placeController = null;
+        let selectedPlace = false;
+
+        /* =========================================================
+           PLACE AUTOCOMPLETE / GEOCODING
+           Uses OpenStreetMap Nominatim to find the birth place.
+           Selecting a suggestion automatically fills Latitude and
+           Longitude, so the visitor does not need to enter them.
+        ========================================================== */
+        function hidePlaceSuggestions() {
+            placeSuggestions.innerHTML = '';
+            placeSuggestions.style.display = 'none';
+        }
+
+        function setPlaceStatus(message, isError) {
+            placeStatus.textContent = message || '';
+            placeStatus.style.color = isError ? '#a94442' : '#555';
+        }
+
+        function selectPlace(item) {
+            const lat = Number(item.lat);
+            const lon = Number(item.lon);
+
+            placeInput.value = item.display_name || '';
+            latitudeInput.value = lat.toFixed(6);
+            longitudeInput.value = lon.toFixed(6);
+            selectedPlace = true;
+
+            hidePlaceSuggestions();
+            setPlaceStatus('Location selected — Latitude और Longitude auto-filled.', false);
+        }
+
+        async function searchPlaces(query) {
+            if (placeController) {
+                placeController.abort();
+            }
+
+            placeController = new AbortController();
+
+            const url = 'https://nominatim.openstreetmap.org/search?' +
+                new URLSearchParams({
+                    q: query,
+                    format: 'jsonv2',
+                    addressdetails: '1',
+                    limit: '6',
+                    'accept-language': 'en'
+                });
+
+            const response = await fetch(url, {
+                method: 'GET',
+                signal: placeController.signal
+            });
+
+            if (!response.ok) {
+                throw new Error('Place search failed');
+            }
+
+            return await response.json();
+        }
+
+        placeInput.addEventListener('input', function() {
+            const query = this.value.trim();
+            selectedPlace = false;
+            latitudeInput.value = '';
+            longitudeInput.value = '';
+            setPlaceStatus('', false);
+
+            clearTimeout(placeTimer);
+            hidePlaceSuggestions();
+
+            if (query.length < 2) {
+                return;
+            }
+
+            placeTimer = setTimeout(async function() {
+                try {
+                    placeSuggestions.innerHTML =
+                        '<div class="list-group-item">Searching place...</div>';
+                    placeSuggestions.style.display = 'block';
+
+                    const results = await searchPlaces(query);
+
+                    if (!results.length) {
+                        placeSuggestions.innerHTML =
+                            '<div class="list-group-item">Place नहीं मिला। थोड़ा और पूरा नाम लिखें।</div>';
+                        return;
+                    }
+
+                    placeSuggestions.innerHTML = '';
+
+                    results.forEach(function(item) {
+                        const button = document.createElement('button');
+                        button.type = 'button';
+                        button.className = 'list-group-item list-group-item-action';
+                        button.textContent = item.display_name;
+                        button.addEventListener('click', function() {
+                            selectPlace(item);
+                        });
+                        placeSuggestions.appendChild(button);
+                    });
+                } catch (error) {
+                    if (error.name === 'AbortError') return;
+                    hidePlaceSuggestions();
+                    setPlaceStatus('Place search अभी उपलब्ध नहीं है। कृपया दोबारा प्रयास करें।', true);
+                }
+            }, 500);
+        });
+
+        placeInput.addEventListener('blur', function() {
+            setTimeout(function() {
+                hidePlaceSuggestions();
+            }, 200);
+        });
+
+        latitudeInput.addEventListener('input', function() {
+            selectedPlace = false;
+        });
+
+        longitudeInput.addEventListener('input', function() {
+            selectedPlace = false;
+        });
 
         function escapeHtml(value) {
             return String(value ?? '')
@@ -574,7 +708,7 @@
 
             if (!payload.dob || !payload.tob || !payload.place ||
                 !payload.latitude || !payload.longitude || !payload.timezone) {
-                showStatus('कृपया सभी आवश्यक जन्म विवरण भरें।', 'error');
+                showStatus('कृपया जन्म तारीख, समय और जन्म स्थान चुनें। Place select करने पर Latitude और Longitude अपने आप भर जाएंगे।', 'error');
                 return;
             }
 
@@ -584,7 +718,7 @@
             showStatus('Kundli तैयार की जा रही है, कृपया प्रतीक्षा करें...', 'info');
 
             try {
-                if (NAVAMSHA_API_KEY === 'vda_live_117ec54f_w47zQw_2DD0oq8rO8oUxVM85drcHbmO41-oj4TNuUk4') {
+                if (NAVAMSHA_API_KEY === 'YOUR_NAVAMSHA_API_KEY') {
                     throw new Error('सबसे पहले code में अपना Navamsha API Key डालें।');
                 }
 
