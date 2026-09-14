@@ -339,7 +339,7 @@
            For early testing this is acceptable only if you understand
            that the key can be copied and replaced/revoked later.
         ========================================================== */
-        const NAVAMSHA_API_KEY = 'vda_live_117ec54f_w47zQw_2DD0oq8rO8oUxVM85drcHbmO41-oj4TNuUk4';
+        const NAVAMSHA_API_KEY = 'YOUR_NAVAMSHA_API_KEY';
         const NAVAMSHA_BASE = 'https://api.navamsha.in';
 
         const form = document.getElementById('kundliForm');
@@ -362,9 +362,10 @@
 
         /* =========================================================
            PLACE AUTOCOMPLETE / GEOCODING
-           Uses OpenStreetMap Nominatim to find the birth place.
-           Selecting a suggestion automatically fills Latitude and
-           Longitude, so the visitor does not need to enter them.
+           GitHub Pages compatible geocoding.
+
+           Open-Meteo Geocoding API supports browser CORS and returns
+           latitude, longitude and IANA timezone without an API key.
         ========================================================== */
         function hidePlaceSuggestions() {
             placeSuggestions.innerHTML = '';
@@ -376,33 +377,77 @@
             placeStatus.style.color = isError ? '#a94442' : '#555';
         }
 
-        function selectPlace(item) {
-            const lat = Number(item.lat);
-            const lon = Number(item.lon);
+        function timezoneOffsetForDate(ianaTimezone, dateString, timeString) {
+            try {
+                const localDate = new Date(dateString + 'T' + timeString + ':00Z');
+                const parts = new Intl.DateTimeFormat('en-US', {
+                    timeZone: ianaTimezone,
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hourCycle: 'h23'
+                }).formatToParts(localDate);
 
-            placeInput.value = item.display_name || '';
+                const values = {};
+                parts.forEach(function(part) {
+                    if (part.type !== 'literal') values[part.type] = part.value;
+                });
+
+                const asUTC = Date.UTC(
+                    Number(values.year), Number(values.month) - 1,
+                    Number(values.day), Number(values.hour),
+                    Number(values.minute), Number(values.second)
+                );
+
+                return (asUTC - localDate.getTime()) / 3600000;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function selectPlace(item) {
+            const lat = Number(item.latitude);
+            const lon = Number(item.longitude);
+
+            placeInput.value = [
+                item.name,
+                item.admin2,
+                item.admin1,
+                item.country
+            ].filter(Boolean).filter(function(value, index, arr) {
+                return arr.indexOf(value) === index;
+            }).join(', ');
+
             latitudeInput.value = lat.toFixed(6);
             longitudeInput.value = lon.toFixed(6);
-            selectedPlace = true;
 
+            const dob = document.getElementById('dob').value;
+            const tob = document.getElementById('tob').value;
+            const offset = (dob && tob && item.timezone)
+                ? timezoneOffsetForDate(item.timezone, dob, tob)
+                : null;
+
+            if (offset !== null && !Number.isNaN(offset)) {
+                document.getElementById('timezone').value = Number(offset.toFixed(2));
+            }
+
+            selectedPlace = true;
             hidePlaceSuggestions();
-            setPlaceStatus('Location selected — Latitude और Longitude auto-filled.', false);
+            setPlaceStatus(
+                'Location selected — Latitude, Longitude और Timezone auto-filled.',
+                false
+            );
         }
 
         async function searchPlaces(query) {
-            if (placeController) {
-                placeController.abort();
-            }
-
+            if (placeController) placeController.abort();
             placeController = new AbortController();
 
-            const url = 'https://nominatim.openstreetmap.org/search?' +
+            const url = 'https://geocoding-api.open-meteo.com/v1/search?' +
                 new URLSearchParams({
-                    q: query,
-                    format: 'jsonv2',
-                    addressdetails: '1',
-                    limit: '6',
-                    'accept-language': 'en'
+                    name: query,
+                    count: '8',
+                    language: 'en',
+                    format: 'json'
                 });
 
             const response = await fetch(url, {
@@ -411,10 +456,43 @@
             });
 
             if (!response.ok) {
-                throw new Error('Place search failed');
+                throw new Error('Place search failed (' + response.status + ')');
             }
 
-            return await response.json();
+            const data = await response.json();
+            return data.results || [];
+        }
+
+        function renderPlaceSuggestions(results) {
+            placeSuggestions.innerHTML = '';
+
+            if (!results.length) {
+                placeSuggestions.innerHTML =
+                    '<div class="list-group-item">Place नहीं मिला। थोड़ा और पूरा नाम लिखें।</div>';
+                placeSuggestions.style.display = 'block';
+                return;
+            }
+
+            results.forEach(function(item) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'list-group-item list-group-item-action';
+                button.innerHTML =
+                    '<b>' + escapeHtml(item.name || '') + '</b>' +
+                    '<br><small>' + escapeHtml(
+                        [item.admin2, item.admin1, item.country]
+                            .filter(Boolean)
+                            .join(', ')
+                    ) + '</small>';
+
+                button.addEventListener('click', function() {
+                    selectPlace(item);
+                });
+
+                placeSuggestions.appendChild(button);
+            });
+
+            placeSuggestions.style.display = 'block';
         }
 
         placeInput.addEventListener('input', function() {
@@ -427,9 +505,7 @@
             clearTimeout(placeTimer);
             hidePlaceSuggestions();
 
-            if (query.length < 2) {
-                return;
-            }
+            if (query.length < 2) return;
 
             placeTimer = setTimeout(async function() {
                 try {
@@ -438,45 +514,34 @@
                     placeSuggestions.style.display = 'block';
 
                     const results = await searchPlaces(query);
-
-                    if (!results.length) {
-                        placeSuggestions.innerHTML =
-                            '<div class="list-group-item">Place नहीं मिला। थोड़ा और पूरा नाम लिखें।</div>';
-                        return;
-                    }
-
-                    placeSuggestions.innerHTML = '';
-
-                    results.forEach(function(item) {
-                        const button = document.createElement('button');
-                        button.type = 'button';
-                        button.className = 'list-group-item list-group-item-action';
-                        button.textContent = item.display_name;
-                        button.addEventListener('click', function() {
-                            selectPlace(item);
-                        });
-                        placeSuggestions.appendChild(button);
-                    });
+                    renderPlaceSuggestions(results);
                 } catch (error) {
                     if (error.name === 'AbortError') return;
                     hidePlaceSuggestions();
-                    setPlaceStatus('Place search अभी उपलब्ध नहीं है। कृपया दोबारा प्रयास करें।', true);
+                    setPlaceStatus(
+                        'Place search अभी उपलब्ध नहीं है: ' + error.message,
+                        true
+                    );
                 }
-            }, 500);
+            }, 350);
         });
 
         placeInput.addEventListener('blur', function() {
             setTimeout(function() {
                 hidePlaceSuggestions();
-            }, 200);
+            }, 250);
         });
 
-        latitudeInput.addEventListener('input', function() {
+        placeInput.addEventListener('change', function() {
             selectedPlace = false;
         });
 
-        longitudeInput.addEventListener('input', function() {
-            selectedPlace = false;
+        document.getElementById('dob').addEventListener('change', function() {
+            if (selectedPlace) setPlaceStatus('जन्म तारीख बदल गई है। Place दोबारा select करें ताकि timezone सही हो।', false);
+        });
+
+        document.getElementById('tob').addEventListener('change', function() {
+            if (selectedPlace) setPlaceStatus('जन्म समय बदल गया है। Place दोबारा select करें ताकि timezone सही हो।', false);
         });
 
         function escapeHtml(value) {
@@ -681,8 +746,14 @@
 
             let html = '<h2>Navamsha / D9 Chart</h2>';
 
-            const data = d9.data || d9.output || d9;
+            if (d9.error) {
+                html += '<div class="alert alert-warning">' +
+                    escapeHtml(d9.error) +
+                    '<br><small>D1 Kundli ऊपर उपलब्ध है।</small></div>';
+                return html;
+            }
 
+            const data = d9.data || d9.output || d9;
             html += renderNested(data);
 
             return html;
@@ -706,9 +777,32 @@
                 timezone: document.getElementById('timezone').value
             };
 
-            if (!payload.dob || !payload.tob || !payload.place ||
-                !payload.latitude || !payload.longitude || !payload.timezone) {
-                showStatus('कृपया जन्म तारीख, समय और जन्म स्थान चुनें। Place select करने पर Latitude और Longitude अपने आप भर जाएंगे।', 'error');
+            if (!payload.dob || !payload.tob || !payload.place) {
+                showStatus('कृपया जन्म तारीख, जन्म समय और जन्म स्थान भरें।', 'error');
+                return;
+            }
+
+            /* If user typed a place but did not click a suggestion, resolve it
+               once on submit. This makes the form more forgiving. */
+            if (!payload.latitude || !payload.longitude) {
+                try {
+                    showStatus('जन्म स्थान खोजा जा रहा है...', 'info');
+                    const typedPlaces = await searchPlaces(payload.place);
+                    if (!typedPlaces.length) {
+                        throw new Error('जन्म स्थान नहीं मिला। कृपया suggestion में से स्थान चुनें।');
+                    }
+                    selectPlace(typedPlaces[0]);
+                    payload.latitude = latitudeInput.value;
+                    payload.longitude = longitudeInput.value;
+                    payload.timezone = document.getElementById('timezone').value;
+                } catch (geoError) {
+                    showStatus('Place error: ' + escapeHtml(geoError.message), 'error');
+                    return;
+                }
+            }
+
+            if (!payload.latitude || !payload.longitude || !payload.timezone) {
+                showStatus('कृपया जन्म स्थान की suggestion select करें ताकि Latitude, Longitude और Timezone भर सकें।', 'error');
                 return;
             }
 
@@ -718,7 +812,7 @@
             showStatus('Kundli तैयार की जा रही है, कृपया प्रतीक्षा करें...', 'info');
 
             try {
-                if (NAVAMSHA_API_KEY === 'YOUR_NAVAMSHA_API_KEY') {
+                if (NAVAMSHA_API_KEY === 'vda_live_117ec54f_w47zQw_2DD0oq8rO8oUxVM85drcHbmO41-oj4TNuUk4') {
                     throw new Error('सबसे पहले code में अपना Navamsha API Key डालें।');
                 }
 
@@ -746,47 +840,70 @@
 
                 const apiHeaders = {
                     'X-API-Key': NAVAMSHA_API_KEY,
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json'
                 };
+
+                /* Navamsha current GET format */
+                const apiParams = new URLSearchParams({
+                    date: payload.dob,
+                    time: payload.tob,
+                    latitude: String(payload.latitude),
+                    longitude: String(payload.longitude),
+                    timezone: String(payload.timezone)
+                });
 
                 /* D1 / Basic Kundli */
                 const basicResponse = await fetch(
-                    NAVAMSHA_BASE + '/api/v1/kundali/basic',
+                    NAVAMSHA_BASE + '/api/v1/kundali/basic?' + apiParams.toString(),
                     {
-                        method: 'POST',
-                        headers: apiHeaders,
-                        body: JSON.stringify(apiBirth)
+                        method: 'GET',
+                        headers: apiHeaders
                     }
                 );
 
-                const basic = await basicResponse.json();
+                const basicText = await basicResponse.text();
+                let basic;
+                try {
+                    basic = JSON.parse(basicText);
+                } catch (e) {
+                    throw new Error('Navamsha API ने valid JSON response नहीं दिया। HTTP ' + basicResponse.status);
+                }
 
                 if (!basicResponse.ok) {
                     throw new Error(
                         basic.detail ||
                         basic.error ||
-                        'Basic Kundli generate नहीं हो सकी।'
+                        basic.message ||
+                        'Basic Kundli generate नहीं हो सकी। HTTP ' + basicResponse.status
                     );
                 }
 
-                /* D9 / Navamsha */
-                const d9Response = await fetch(
-                    NAVAMSHA_BASE + '/api/v1/divisional/d9',
-                    {
-                        method: 'POST',
-                        headers: apiHeaders,
-                        body: JSON.stringify(apiBirth)
-                    }
-                );
-
-                const d9 = await d9Response.json();
-
-                if (!d9Response.ok) {
-                    throw new Error(
-                        d9.detail ||
-                        d9.error ||
-                        'Navamsha (D9) chart generate नहीं हो सकी।'
+                /* D9 / Navamsha is optional: D1 should still be displayed
+                   if the D9 endpoint is unavailable or not enabled. */
+                let d9 = null;
+                try {
+                    const d9Response = await fetch(
+                        NAVAMSHA_BASE + '/api/v1/divisional/d9?' + apiParams.toString(),
+                        {
+                            method: 'GET',
+                            headers: apiHeaders
+                        }
                     );
+
+                    const d9Text = await d9Response.text();
+                    let d9Json = null;
+                    try { d9Json = JSON.parse(d9Text); } catch (e) {}
+
+                    if (d9Response.ok) {
+                        d9 = d9Json;
+                    } else {
+                        d9 = {
+                            error: (d9Json && (d9Json.detail || d9Json.error || d9Json.message))
+                                || 'D9 endpoint उपलब्ध नहीं है।'
+                        };
+                    }
+                } catch (d9Error) {
+                    d9 = { error: 'D9 request failed: ' + d9Error.message };
                 }
 
                 statusBox.style.display = 'none';
@@ -803,7 +920,7 @@
 
                 basicResult.innerHTML = renderBasic(basicData, basicMeta);
 
-                d9Result.innerHTML = renderD9(result.d9);
+                d9Result.innerHTML = renderD9(d9);
 
                 rawResult.innerHTML =
                     '<details>' +
