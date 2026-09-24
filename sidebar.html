@@ -26,8 +26,10 @@
 (function(){
 
   var isHome =
-    location.pathname === "/payment-option.html" ||
-    location.pathname.endsWith("payment-option.html");
+    path === "/payment-option.html" ||
+    path.endsWith("payment-option.html") ||
+    path === "/about.html" ||
+    path.endsWith("about.html");
 
   var hasQuery = location.search.length > 0;
 
