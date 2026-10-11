@@ -9,11 +9,10 @@
   style="border:0;width:300px;height:250px;display:block;margin:10px auto">
 </iframe>
 
-<!-- HOME ONLY -->
+<!-- HOME / TRIP.COM ONLY -->
 <div id="adHome" style="display:none">
   <center> <a href="https://www.trip.com/?Allianceid=7779297&SID=293012938&trip_sub1=&trip_sub3=D11417268"
-           target="_blank" rel="nofollow noopener" style="background: linear-gradient(135deg, #0077ff, #00c6ff); color: #fff; text-decoration: none; font-weight: bold;
-    border-radius: 8px;">
+            target="_blank" rel="nofollow noopener" style="background: linear-gradient(135deg, #0077ff, #00c6ff); color: #fff; text-decoration: none; font-weight: bold; border-radius: 8px; display:block; padding:10px;">
             ✈️ Fly with Trip.com  
             <br>Best deals on flights & hotels
         </a></center>
@@ -24,8 +23,10 @@
 
 <script>
 (function(){
+  // 1. Sahi path variable define kiya gaya hai
+  var path = window.location.pathname;
 
-  var isHome =
+  var isTripPage =
     path === "/payment-option.html" ||
     path.endsWith("payment-option.html") ||
     path === "/about.html" ||
@@ -33,38 +34,40 @@
 
   var hasQuery = location.search.length > 0;
 
-  if (isHome) {
-    document.getElementById("adHome").style.display = "block";
+  // 2. Agar Trip page hai toh Trip.com dikhega
+  if (isTripPage) {
+    var homeBox = document.getElementById("adHome");
+    if (homeBox) homeBox.style.display = "block";
     return;
   }
 
-  // clean inner pages only
+  // 3. Baki pages ke liye Google AdSense
   if (!hasQuery) {
-
     var box = document.getElementById("adInner");
-    box.style.display = "block";
+    if (box) {
+      box.style.display = "block";
 
-    // create adsense script
-    var s = document.createElement("script");
-    s.async = true;
-    s.src =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957";
-    s.crossOrigin = "anonymous";
-    document.head.appendChild(s);
+      // create adsense script
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957";
+      s.crossOrigin = "anonymous";
+      document.head.appendChild(s);
 
-    // ad container
-    var ins = document.createElement("ins");
-    ins.className = "adsbygoogle";
-    ins.style.display = "inline-block";
-    ins.style.width = "300px";
-    ins.style.height = "250px";
-    ins.setAttribute("data-ad-client", "ca-pub-4305348743992957");
-    ins.setAttribute("data-ad-slot", "3614194127");
-    box.appendChild(ins);
+      // ad container
+      var ins = document.createElement("ins");
+      ins.className = "adsbygoogle";
+      ins.style.display = "inline-block";
+      ins.style.width = "300px";
+      ins.style.height = "250px";
+      ins.setAttribute("data-ad-client", "ca-pub-4305348743992957");
+      ins.setAttribute("data-ad-slot", "3614194127");
+      box.appendChild(ins);
 
-    s.onload = function () {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    };
+      s.onload = function () {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      };
+    }
   }
 
 })();
