@@ -1,57 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Sakhiraj - Auto Trading bot</title>
+  <title>Sakhiraj - Auto Trading bot for KuCoin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <title>Auto Trading Bot for spot trading market for HITBTC Exchange</title>
-<META NAME="DESCRIPTION" CONTENT="Auto trading bot for Hitbtc usong REST API , PHP and MYSQL">
-<META NAME="KEYWORDS" CONTENT="hitbtc, hitbtc exchange,auto trading bot , trading bot, algo trading">
-<meta property="og:image" content="https://aksharmty.github.io/site/bot-image.png" />
+  <title>Auto Trading Bot for spot trading market for KUCOIN Exchange</title>
+  <META NAME="DESCRIPTION" CONTENT="Auto trading bot for Kucoin using REST API, PHP and MYSQL">
+  <META NAME="KEYWORDS" CONTENT="kucoin, kucoin exchange, auto trading bot, trading bot, algo trading, grid dca bot">
+  <meta property="og:image" content="https://aksharmty.github.io/site/bot-image-1.png" />
 
   <style>
       div .con{
           border:solid #000000;
           min-height:300px;
+          padding: 10px;
       }
   </style>
 </head>
 <body>
     <div class="col-md-9"><center><H1>Sakhiraj - Auto trading Bot</h1><br>
-    <img src="https://aksharmty.github.io/site/bot-image.png"><br></center>
+    <img src="https://aksharmty.github.io/site/bot-image-1.png" alt="KuCoin Auto Trading Bot Banner"><br></center>
     <br>
-We have successfully devlop auto trading bot for HITBTC . Hitbtc deal in cryptocurrency . More details of HITBTC visit <a href="https://hitbtc.com" target="_blank"> Goto HITBTC</a><br>
-Our auto trading bot work in single market like USDT (market customize possible). Trading bot buy automatic as per signal in spot trading market and sell on high price as per signal. <br>
+We have successfully developed auto trading bot for KUCOIN. Kucoin deals in cryptocurrency. For more details on KUCOIN visit <a href="https://www.kucoin.com" target="_blank"> Go to KUCOIN</a><br>
+Our auto trading bot works in fixed 5 USDT market pairs. Trading bot buys automatically using preset shopkeeper strategy in spot trading market and sells at high price for profit.<br><br>
+
 <div class="col-md-4"><div class="con">
     <b>About Bot</b><br>
-Exchange : HITBTC<br>
+Exchange : KUCOIN<br>
 Trade type : Spot<br> 
 API type : REST<br>
-Script : PHP and MYSQL<br></div></div>
+Script : PHP and MYSQL<br>
+Market Pair : Fixed 5 USDT Market Pair<br>
+</div></div>
+
 <div class="col-md-4"><div class="con">
 <b>Strategy :</b> <br>
-Bot work on moving average 9 sma breakout on 1 Hour timeframe.<br>
-Entry : Breakout 9 sma<br>
-Exit : wait untill get profit ( Never sell on loss , bot wait for profit )<br>
-Profit minimum : 0.25 per trade<br>
+Bot works on Preset Shopkeeper Strategy.<br>
+Entry : Preset Buy Levels<br>
+Exit : Wait until profit ( Never sell on loss, bot waits for profit target )<br>
+Profit minimum : 2.25 per trade<br>
 Profit maximum : No Limit<br>
-Number of pair : 5 ( open trade in 5 pair )<br>
-Number of Position : 50 maximum ( maximum 10 position in one pair )<br>
-Number of Trade per day : as per signal</div></div>
+Number of pairs : Fixed 5 USDT Pairs<br>
+Number of Positions : No Limit<br>
+Number of Trades per day : Automated execution<br>
+</div></div>
+
 <div class="col-md-4"><div class="con">
 <b>Requirement :</b><br>
-Hitbtc api and secrat key<br>
-Fund in BTC<br>
+KuCoin API key and Secret key<br>
+Fund in USDT<br>
 Other Requirements :<br>
 	A Domain Name ( You must buy domain from <a href="https://sakhihosting.in" target="_blank">https://sakhihosting.in</a>. We support only sakhihosting.in domain )<br>
-1GB sharing web hosting linux ( You must buy web hosting from <a href="https://sakhihosting.in/web-hosting/index.php" target="_blank">https://sakhihosting.in/web-hosting/index.php</a> . We support only sakhihosting.in hosting )<br>
-Web Hosting cron-job.org account for cron job setting <a href="https://cron-job.org" target="_blank">https://cron-job.org</a> Cron-job,org provide free cron job service<br>
+1GB sharing web hosting linux ( You must buy web hosting from <a href="https://sakhihosting.in/web-hosting/index.php" target="_blank">https://sakhihosting.in/web-hosting/index.php</a>. We support only sakhihosting.in hosting )<br>
+Web Hosting cron-job.org account for cron job setting <a href="https://cron-job.org" target="_blank">https://cron-job.org</a> (Cron-job.org provides free cron job service)<br>
 </div></div>
+
 <center>
-Trading bot code Price : USD.150 one time. <br>
+<br>
+Trading bot code Price : USD 150.00 one time. <br><br>
   <form action="https://www.coinpayments.net/index.php" method="post" target="_blank">
 	<input type="hidden" name="cmd" value="_pay">
 	<input type="hidden" name="reset" value="1">
@@ -59,22 +68,22 @@ Trading bot code Price : USD.150 one time. <br>
 	<input type="hidden" name="merchant" value="80fac8e50744f81c50912a923c7a05b2">
 	<input type="text" name="currency" value="USD" readonly>
 	<input type="text" name="amountf" value="150.00" readonly>
-	<input type="hidden" name="item_name" value="Hitbtc Auto Trading bot script using REST API in PHP & MYSQL">		
+	<input type="hidden" name="item_name" value="Kucoin Auto Trading bot script using REST API in PHP & MYSQL">		
 	<input type="hidden" name="allow_extra" value="1">	
 	<input type="hidden" name="success_url" value="https://www.coinpayments.net/index.php?cmd=acct_home">	
-	<input type="hidden" name="cancel_url" value="https://aksharmty.github.io/site/bot.html"><br>	
+	<input type="hidden" name="cancel_url" value="https://aksharmty.github.io/site/bot.html"><br><br>	
 	<input type="image" src="https://www.coinpayments.net/images/pub/buynow-white.png" alt="Buy Now with CoinPayments.net">
 </form></center><br>
 <h3>After payment Share domain and hosting password for bot setup<br>
-NOTE : All payment are non refundable. If you have any question please clear before payment.<br>
+NOTE : All payments are non refundable. If you have any questions please clear before payment.<br>
 We provide only bot code without any guarantee for profit.
 <br>
 Contact : sakhihosting@gmail.com<br>
-whatsapp : +919213816442</h3><br><br>
+Whatsapp : +919213816442</h3><br><br>
   </div>
   <div class="col-md-3">
       <h1>ADVERTISEMENT</h1>
-<iframe data-aa='1713699' src='//ad.a-ads.com/1713699?size=300x250' style='width:300px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
+<iframe data-aa='2415132' src='//ad.a-ads.com/2415132?size=300x250' style='width:300px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
   <!-- BannerAdExchange.net Start -->
 <script type="text/javascript" src="https://static.banneradexchange.net/adserver.js"></script>
 <script type="text/javascript">
@@ -87,6 +96,18 @@ var coltext='000000';
 var coltitle='0511FF';
 setupad(publisher,adtype,adsize,colbackground,colborder,coltext,coltitle);
 </script>
-<!-- BannerAdExchange.net End --></div>
+<!-- BannerAdExchange.net End -->
+	  <br>
+  <br>
+<script>
+  atOptions = {
+    'key' : 'ddd45fe2c952a29b1285c4b55912e052',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/ddd45fe2c952a29b1285c4b55912e052/invoke.js"></script></div>
 </body>
 </html>
