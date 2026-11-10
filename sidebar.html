@@ -32,7 +32,7 @@
     path === "/about.html" ||
     path.endsWith("about.html");
 
-  var hasQuery = location.search.length > 0;
+  //var hasQuery = location.search.length > 0;
 
   // 2. Agar Trip page hai toh Trip.com dikhega
   if (isTripPage) {
@@ -42,7 +42,7 @@
   }
 
   // 3. Baki pages ke liye Google AdSense
-  if (!hasQuery) {
+  //if (!hasQuery) {
     var box = document.getElementById("adInner");
     if (box) {
       box.style.display = "block";
@@ -68,7 +68,7 @@
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       };
     }
-  }
+ // }
 
 })();
 </script>
