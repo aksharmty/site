@@ -18,13 +18,14 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         /* Fixed Desktop Table Layout */
         .layout-table {
-            width: 1000px;
+            width: 100%;
+            max-width: 1200px;
             border-collapse: separate;
             border-spacing: 15px;
             margin: 0 auto;
@@ -34,7 +35,7 @@
             vertical-align: top;
         }
 
-        /* Top Row Boxes (Ad & Improved Post Article Banner) */
+        /* Top Row Boxes (Ad & Banner) */
         .top-box {
             background-color: #161b22;
             border: 1px solid #30363d;
@@ -47,62 +48,76 @@
             overflow: hidden;
         }
 
-        /* Improved Post Article Banner Styling */
-        .article-card {
-            background: linear-gradient(135deg, #2b0b3f 0%, #5b1385 50%, #8a2be2 100%);
+        /* Left Vertical Skyscraper Banner (100px x 500px) */
+        .vertical-banner-100x500 {
+            width: 100px;
+            height: 500px;
+            background: linear-gradient(180deg, #2b0b3f 0%, #5b1385 50%, #8a2be2 100%);
             border: 2px solid #ff00ff;
-            border-radius: 8px;
-            padding: 15px 5px;
-            height: 110px;
+            border-radius: 10px;
             display: flex;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .article-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.6);
-        }
-
-        .banner-link {
-            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            width: 100%;
-            height: 100%;
+            padding: 20px 8px;
+            text-align: center;
             text-decoration: none;
             color: #ffffff;
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.45);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin: 0 auto;
         }
 
-        .banner-text h3 {
-            font-size: 1.15rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-            color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        .vertical-banner-100x500:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.6);
         }
 
-        .banner-text p {
-            font-size: 0.82rem;
-            color: #f3e8ff;
+        .vb-icon {
+            font-size: 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            width: 54px;
+            height: 54px;
+            line-height: 54px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .vb-title {
+            font-size: 0.95rem;
+            font-weight: 900;
             line-height: 1.3;
-            font-weight: 500;
-        }
-
-        .cta-badge {
-            background-color: #ffffff;
-            color: #000000;
-            font-weight: 800;
-            font-size: 0.78rem;
-            padding: 8px 14px;
-            border-radius: 20px;
-            white-space: nowrap;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(255,255,255,0.3);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.6);
         }
 
-        /* High-Converting Banner Design for Grid Bot (700x500px) */
+        .vb-title span {
+            color: #00ff87;
+            display: block;
+            font-size: 1.05rem;
+            margin: 4px 0;
+        }
+
+        .vb-desc {
+            font-size: 0.72rem;
+            color: #f3e8ff;
+            line-height: 1.35;
+        }
+
+        .vb-cta {
+            background: linear-gradient(45deg, #00f0ff, #00ff87);
+            color: #000000;
+            font-weight: 900;
+            font-size: 0.72rem;
+            padding: 8px 6px;
+            border-radius: 16px;
+            width: 100%;
+            text-transform: uppercase;
+            box-shadow: 0 3px 10px rgba(0, 240, 255, 0.4);
+        }
+
+        /* High-Converting Banner Design for Grid Bot */
         .offer-card {
             background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             border: 3px solid #00f0ff;
@@ -112,10 +127,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 700px;
+            width: 100%;
+            max-width: 750px;
             height: 500px;
             position: relative;
             overflow: hidden;
+            margin: 0 auto;
         }
 
         .offer-card::before {
@@ -142,9 +159,8 @@
             gap: 10px;
         }
 
-        /* BIG BOLD TITLE */
         .offer-title {
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             font-weight: 900;
             color: #ffffff;
             text-shadow: 0 3px 8px rgba(0,0,0,0.9);
@@ -157,7 +173,6 @@
             text-shadow: 0 0 15px rgba(0,255,135,0.5);
         }
 
-        /* CENTER ALIGNED OFFER BADGE & HEADER SUB-INFO */
         .offer-sub-header {
             display: flex;
             flex-direction: column;
@@ -212,7 +227,6 @@
             background: rgba(255, 255, 255, 0.25);
         }
 
-        /* Scrollable Content Area within 500px */
         .offer-scroll-body {
             flex-grow: 1;
             overflow-y: auto;
@@ -317,7 +331,6 @@
             transform: scale(1.03);
         }
 
-        /* Ad Box Container (300x250) */
         .ad-box-300x250 {
             width: 300px;
             height: 250px;
@@ -335,10 +348,10 @@
 <body>
 
 <div class="container">
+    <!-- Top Header Ads Table -->
     <table class="layout-table">
-        <!-- Row 1: Top Ads & Improved Post Article Banner -->
         <tr>
-            <td style="width: 500px;">
+            <td style="width: 50%;">
                 <div class="top-box">
                     <!-- BEGIN AADS AD UNIT 2424570 -->
                     <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
@@ -347,41 +360,61 @@
                     <!-- END AADS AD UNIT 2424570 -->
                 </div>
             </td>
-            <td style="width: 500px;">
-                <div class="article-card">
-                    <a href="https://adquash.com" target="_blank" class="banner-link">
-                        <div class="banner-text">
-                            <h3>✍️ Publish Articles For Free on Adquash</h3>
-                            <p>Share knowledge on Adquash & broadcast globally 100% free!</p>
-                        </div>
-                        <div class="cta-badge">Publish &rarr;</div>
-                    </a>
-                </div>
+            <td style="width: 50%; text-align: center;">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4305348743992957" crossorigin="anonymous"></script>
+                <!-- sakhiadheader -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;min-width:250px;max-width:728px;width:100%;height:90px;max-height:90px;"
+                     data-ad-client="ca-pub-4305348743992957"
+                     data-ad-slot="1924539816"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </td>
         </tr>
+    </table>
 
-        <!-- Row 2: Grid Bot Offer Card -->
+    <!-- Main 3-Column Content Table -->
+    <table class="layout-table">
         <tr>
-            <td style="width: 700px;">
+            <!-- Left Sidebar: 100x500 Adquash Article Banner -->
+            <td style="width: 115px; text-align: center;">
+                <a href="https://adquash.com" target="_blank" class="vertical-banner-100x500" title="Post Free Articles on Adquash.com">
+                    <div class="vb-icon">✍️</div>
+                    <div class="vb-title">
+                        Post
+                        <span>FREE</span>
+                        Articles
+                    </div>
+                    <div class="vb-desc">
+                        Publish your content &amp; get free backlinks on <strong>Adquash.com</strong>
+                    </div>
+                    <div class="vb-cta">Post Now &rarr;</div>
+                </a>
+            </td>
+
+            <!-- Center Offer Card -->
+            <td>
                 <div class="offer-card">
                     <div class="offer-header">
-                        <!-- LINE 1: BIG BOLD TITLE -->
+                        <!-- BIG BOLD TITLE -->
                         <div class="offer-title">🤖 JOIN KUCOIN VIA REFERRAL & GET <span>FREE GRID BOT</span>!</div>
                         
-                        <!-- UPDATED SUB-HEADER SECTION WITH CENTER ALIGNED MONTH & YEAR -->
+                        <!-- SUB-HEADER SECTION -->
                         <div class="offer-sub-header">
                             <div class="sub-header-top-row">
-                                <div class="offer-badge"><a href="https://www.kucoin.com/r/af/r8Y9LBX" target="_blank" class="header-learn-btn">Join Kucoin Free</a></div>                            
+                                <div class="offer-badge">
+                                    <a href="https://www.kucoin.com/r/af/r8Y9LBX" target="_blank" style="color: inherit; text-decoration: none;">Join Kucoin Free</a>
+                                </div>                            
                                 <a href="https://gridbot.adquash.com/free-trading-bot.html" target="_blank" class="header-learn-btn">Learn More</a>
                             </div>
                             <div class="header-meta">Offer valid till <span id="dynamic-month-year-name">end of month</span></div>
                         </div>
                     </div>
                     
-                    <!-- Scrollable Content Area within 500px -->
+                    <!-- Scrollable Content Area -->
                     <div class="offer-scroll-body">
                         <div class="offer-body-content">
-                            <!-- PARAGRAPH -->
                             <p>Join KuCoin via our referral link and deposit at least <strong>$120 USDT</strong> in your KuCoin account to claim your Sakhiraj Grid Bot setup completely free for the first year!</p>
                             
                             <!-- Key Feature Grid Highlights -->
@@ -411,11 +444,13 @@
                             <span>₹5,000 / yr</span> <strong>FREE ($0)</strong>
                         </div>
                         <a href="https://www.kucoin.com/r/af/r8Y9LBX" target="_blank" class="action-link-primary">Join Kucoin Free &rarr;</a>
-						<a href="https://gridbot.adquash.com/free-trading-bot.html" target="_blank" class="header-learn-btn">Learm More &rarr;</a>
+                        <a href="https://gridbot.adquash.com/free-trading-bot.html" target="_blank" class="header-learn-btn">Learn More &rarr;</a>
                     </div>
                 </div>
             </td>
-            <td style="width: 300px;">
+
+            <!-- Right Sidebar Ads -->
+            <td style="width: 315px;">
                 <div class="ad-box-300x250">
                     <!-- BEGIN AADS AD UNIT 2415132 -->
                     <div id="frame" style="width: 300px; margin: auto; z-index: 99998; height: 250px;">
@@ -427,16 +462,18 @@
                 <br>
                 
                 <!-- Adsterra 300x250 Script -->
-                <script>
-                    atOptions = {
-                        'key' : 'ddd45fe2c952a29b1285c4b55912e052',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
-                <script src="https://bauval.org/22/ddd45fe2c952a29b1285c4b55912e052"></script>
+                <div style="width: 300px; margin: 0 auto;">
+                    <script>
+                        atOptions = {
+                            'key' : 'ddd45fe2c952a29b1285c4b55912e052',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    </script>
+                    <script src="https://bauval.org/22/ddd45fe2c952a29b1285c4b55912e052"></script>
+                </div>
             </td>
         </tr>
     </table>
