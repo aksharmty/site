@@ -40,12 +40,12 @@ p {
     position: fixed;
     top: 1px;
     width: 50%;
-    height: 75px;
-    border: 2px solid green;
+    height: 95px;
+    border: 1px solid green;
     background-color: lightgray;
     z-index: 9999;
     left: 0;
-    padding: 3px 5px 3px 5px;
+    padding: 1px 2px 1px 2px;
     box-sizing: border-box;
 }
 
@@ -53,12 +53,12 @@ p {
     position: fixed;
     top: 1px;
     width: 50%;
-    height: 75px;
-    border: 2px solid green;
+    height: 95px;
+    border: 1px solid green;
     background-color: lightgray;
     z-index: 9999;
     right: 0;
-    padding: 3px 5px 3px 5px;
+    padding: 1px 2px 1px 2px;
     box-sizing: border-box;
 }
 
